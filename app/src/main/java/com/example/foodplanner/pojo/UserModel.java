@@ -1,9 +1,20 @@
 package com.example.foodplanner.pojo;
 
+import java.util.ArrayList;
+
 public class UserModel {
     private String name;
     private String email;
     private String password;
+    private ArrayList<Integer> favMeals;
+
+    public ArrayList<Integer> getFavMeals() {
+        return favMeals;
+    }
+
+    public void setFavMeals(ArrayList<Integer> favMeals) {
+        this.favMeals = favMeals;
+    }
 
     public String getName() {
         return name;
