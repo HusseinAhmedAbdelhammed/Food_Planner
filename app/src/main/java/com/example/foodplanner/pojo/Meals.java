@@ -1,14 +1,14 @@
 package com.example.foodplanner.pojo;
 
 public class Meals {
-    private int idMeal;
-    private String strMeal;
-    private String strCategory;
-    private String strArea;
-    private String strInstructions;
-    private String strMealThumb;
+    private int idMeal;//im
+    private String strMeal;//im
+    private String strCategory;//im
+    private String strArea;//im
+    private String strInstructions;//im
+    private String strMealThumb;//im
     private String strTags;
-    private String strYoutube;
+    private String strYoutube;//im
     private String strIngredient1;
     private String strIngredient2;
     private String strIngredient3;

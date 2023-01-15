@@ -1,5 +1,6 @@
 package com.example.foodplanner.network.apiclint;
 
+import com.example.foodplanner.pojo.CategoriesList;
 import com.example.foodplanner.pojo.MealsList;
 import com.example.foodplanner.utils.Consts;
 
@@ -27,5 +28,9 @@ public class APIClient {
     public Observable<MealsList> getRandomMeal(){
         return apiClientInterface.getRandomMeal();
     }
-
+    public Observable<MealsList>getMealByName(String name){return apiClientInterface.getMealByName(name);}
+    public Observable<MealsList>getMealByCountry(String country){return apiClientInterface.getMealByCountry(country);}
+    public Observable<MealsList>getMealByCategory(String category){return apiClientInterface.getMealByCategory(category);}
+    public Observable<MealsList>getMealByIngred(String ingred){return apiClientInterface.getMealByIngred(ingred);}
+    public Observable<CategoriesList>getCategories(){return apiClientInterface.getCategories();}
 }
