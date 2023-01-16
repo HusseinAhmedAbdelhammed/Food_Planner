@@ -20,6 +20,13 @@ public class PlanModel {
     private String planInstructions;
     @ColumnInfo(name="planThum")
     private String planThum;
+    @ColumnInfo(name = "planYouTube")
+    private String planYouTube;
+    @ColumnInfo(name = "day")
+    private String day;
+    @ColumnInfo(name = "type")
+    private String type;
+
 
     public int getPlanId() {
         return planId;
@@ -85,12 +92,6 @@ public class PlanModel {
         this.type = type;
     }
 
-    @ColumnInfo(name = "planYouTube")
-    private String planYouTube;
-    @ColumnInfo(name = "day")
-    private String day;
-    @ColumnInfo(name = "type")
-    private String type;
 
 
 }
