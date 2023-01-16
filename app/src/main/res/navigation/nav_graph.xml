@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/catFragment"
         android:name="com.example.foodplanner.view.fragment.CatFragment"
-        android:label="fragment_cat"
+        android:label="cat"
         tools:layout="@layout/fragment_cat" />
 </navigation>
