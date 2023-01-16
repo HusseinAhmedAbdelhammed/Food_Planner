@@ -16,17 +16,21 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class TestFragmentPresenter {
     TestFragmentInterface testFragmentInterface;
     APIClient client;
+    private static final String TAG = "SONIC";
     public TestFragmentPresenter(TestFragmentInterface fInterface){
+        Log.i(TAG,"hello");
         testFragmentInterface=fInterface;
         client=APIClient.getInstance();
     }
     public void getCateg(){
+        Log.i(TAG,"HI");
         Observable<CategoriesList>catOps=client.getCategories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         Observer<CategoriesList>observer=new Observer<CategoriesList>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
+                Log.i(TAG, "NOT AM ERROR");
 
             }
 
@@ -37,7 +41,7 @@ public class TestFragmentPresenter {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                Log.i("SONIC", e.getMessage());
+                Log.i(TAG, e.getMessage());
             }
 
             @Override
