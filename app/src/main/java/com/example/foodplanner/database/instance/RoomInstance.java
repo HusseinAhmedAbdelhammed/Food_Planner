@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.foodplanner.database.favorite.MealDAO;
 import com.example.foodplanner.pojo.MealsTable;
 
-@Database(entities = {MealsTable.class},version = 1)
+@Database(entities = {MealsTable.class, PlanModel.class},version = 1)
 public abstract class RoomInstance extends RoomDatabase {
     private static RoomInstance instance=null;
     public abstract MealDAO mealDAO();
