@@ -56,7 +56,7 @@ public class SignupFragment extends Fragment implements SignUpFragmentInterface 
         logIn.setOnClickListener(new View.OnClickListener() {
          @Override
              public void onClick(View view) {
-//                 NavigatorClass.navigateBetweenFragments(view ,R.id.loginFragment2);
+                 NavigatorClass.navigateBetweenFragments(view ,R.id.loginFragment);
              }
 
         });
@@ -75,7 +75,7 @@ public class SignupFragment extends Fragment implements SignUpFragmentInterface 
     public void signUp(@NonNull Task<AuthResult> task) {
         if(task.isSuccessful()){
             Toast.makeText(getContext(), "signUp Successfully", Toast.LENGTH_SHORT).show();
-//            NavigatorClass.navigateBetweenFragments(getView(), R.id.loginFragment2);
+            NavigatorClass.navigateBetweenFragments(getView(), R.id.loginFragment);
         }else{
             Toast.makeText(getContext(), "faild" +
                     task.getException().getMessage() , Toast.LENGTH_SHORT).show();

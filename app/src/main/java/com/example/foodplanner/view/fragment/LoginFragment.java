@@ -75,7 +75,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigatorClass.navigateBetweenFragments(view, R.id.signupFragment2);
+                NavigatorClass.navigateBetweenFragments(view, R.id.signupFragment);
             }
         });
         logingoogle.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +128,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
                 try {
                     task.getResult(ApiException.class);
                     authWithGoogle(res);
-                    NavigatorClass.navigateBetweenFragments(getView(), R.id.splashFragment2);
+                    NavigatorClass.navigateBetweenFragments(getView(), R.id.splashFragment);
 
                 } catch (ApiException e) {
                     e.printStackTrace();

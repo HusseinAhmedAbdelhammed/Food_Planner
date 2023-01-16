@@ -39,7 +39,7 @@ public class SplashFragment extends Fragment {
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment2_to_signupFragment2);
+                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_signupFragment);
             }
         });
     }
