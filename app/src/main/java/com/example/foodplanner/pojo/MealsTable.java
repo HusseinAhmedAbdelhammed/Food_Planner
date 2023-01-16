@@ -21,4 +21,52 @@ public class MealsTable {
     private String thum;
     @ColumnInfo(name = "youTube")
     private String youTube;
+
+    public int getMealId() {
+        return mealId;
+    }
+
+    public void setMealId(int mealId) {
+        this.mealId = mealId;
+    }
+
+    public String getMealName() {
+        return mealName;
+    }
+
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
+    }
+
+    public String getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public String getThum() {
+        return thum;
+    }
+
+    public void setThum(String thum) {
+        this.thum = thum;
+    }
+
+    public String getYouTube() {
+        return youTube;
+    }
+
+    public void setYouTube(String youTube) {
+        this.youTube = youTube;
+    }
 }
