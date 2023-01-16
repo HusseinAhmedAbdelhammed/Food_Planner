@@ -26,4 +26,68 @@ public class PlanModel {
     private String day;
     @ColumnInfo(name = "type")
     private String type;
+
+    public int getpMealId() {
+        return pMealId;
+    }
+
+    public void setpMealId(int pMealId) {
+        this.pMealId = pMealId;
+    }
+
+    public String getpMealName() {
+        return pMealName;
+    }
+
+    public void setpMealName(String pMealName) {
+        this.pMealName = pMealName;
+    }
+
+    public String getpRecipe() {
+        return pRecipe;
+    }
+
+    public void setpRecipe(String pRecipe) {
+        this.pRecipe = pRecipe;
+    }
+
+    public String getpInstructions() {
+        return pInstructions;
+    }
+
+    public void setpInstructions(String pInstructions) {
+        this.pInstructions = pInstructions;
+    }
+
+    public String getpThum() {
+        return pThum;
+    }
+
+    public void setpThum(String pThum) {
+        this.pThum = pThum;
+    }
+
+    public String getpYouTube() {
+        return pYouTube;
+    }
+
+    public void setpYouTube(String pYouTube) {
+        this.pYouTube = pYouTube;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
