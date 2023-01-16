@@ -42,6 +42,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
     implementation "androidx.navigation:navigation-fragment:2.5.3"
     implementation "androidx.navigation:navigation-ui:2.5.3"
+    implementation 'androidx.navigation:navigation-runtime:2.5.3'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.google.android.gms:play-services-auth:20.4.0'
     def room_version = "2.4.3"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
@@ -49,4 +52,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
