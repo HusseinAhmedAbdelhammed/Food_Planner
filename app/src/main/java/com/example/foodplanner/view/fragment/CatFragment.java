@@ -63,7 +63,7 @@ TestFragmentAdapter adapter;
         rec.setAdapter(adapter);
     }
     public void init(View view){
-        rec=view.findViewById(R.id.rec);
+        rec=view.findViewById(R.id.recHome);
         presenter=new TestFragmentPresenter(this);
     }
 }
