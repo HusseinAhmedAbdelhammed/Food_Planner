@@ -1,6 +1,7 @@
 package com.example.foodplanner.view.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.network.FireBase;
 import com.example.foodplanner.presenters.classes.SignUpFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.SignUpFragmentInterface;
 import com.example.foodplanner.utils.NavigatorClass;
@@ -23,10 +25,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 
 public class SignupFragment extends Fragment implements SignUpFragmentInterface {
-    Button signUp;
-    TextView logIn;
+    Button signUp,logInRedirct;
     EditText emailET, passwordET;
     FloatingActionButton signupgoogle, guest;
+    FireBase fireBase;
 
     SignUpFragmentPresenter signUpFragmentPresenter;
 
@@ -56,25 +58,28 @@ public class SignupFragment extends Fragment implements SignUpFragmentInterface 
 
             }
         });
-        logIn.setOnClickListener(new View.OnClickListener() {
+        logInRedirct.setOnClickListener(new View.OnClickListener() {
          @Override
              public void onClick(View view) {
                  NavigatorClass.navigateBetweenFragments(view ,R.id.loginFragment);
              }
+        });
+        signupgoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(fireBase.getClient().getSignInIntent(), 100);
 
+            }
         });
     }
 
-    void declareComponents(@NonNull View view){
-        signUp = view.findViewById(R.id.signupbtn);
-        logIn = view.findViewById(R.id.loginRedirect);
-        emailET = view.findViewById(R.id.signUpUserName);
-        passwordET = view.findViewById(R.id.signUpPassword);
-        signupgoogle = view.findViewById(R.id.googleSignUP);
-        guest = view.findViewById(R.id.guest);
-        signUpFragmentPresenter = new SignUpFragmentPresenter(this::signUp);
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        signUpFragmentPresenter.signUpWithGoogle(requestCode,data);
     }
+
+
 
     @Override
     public void signUp(@NonNull Task<AuthResult> task) {
@@ -85,5 +90,28 @@ public class SignupFragment extends Fragment implements SignUpFragmentInterface 
             Toast.makeText(getContext(), "faild" +
                     task.getException().getMessage() , Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void sighUpSuccessWithGoogle() {
+        NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
+    }
+
+    @Override
+    public void signUpFaildWithGoogle() {
+        Toast.makeText(getContext(), "sorry an error happen please try again",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    void declareComponents(@NonNull View view){
+        signUp = view.findViewById(R.id.signupbtn);
+        logInRedirct = view.findViewById(R.id.loginRedirect);
+        emailET = view.findViewById(R.id.signUpUserName);
+        passwordET = view.findViewById(R.id.signUpPassword);
+        signupgoogle = view.findViewById(R.id.googleSignUP);
+        guest = view.findViewById(R.id.guest);
+        signUpFragmentPresenter = new SignUpFragmentPresenter(this);
+        fireBase = new FireBase(getContext());
+
     }
 }
