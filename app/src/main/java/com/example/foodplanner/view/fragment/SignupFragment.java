@@ -19,12 +19,15 @@ import com.example.foodplanner.presenters.classes.SignUpFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.SignUpFragmentInterface;
 import com.example.foodplanner.utils.NavigatorClass;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 
 public class SignupFragment extends Fragment implements SignUpFragmentInterface {
     Button signUp;
     TextView logIn;
     EditText emailET, passwordET;
+    FloatingActionButton signupgoogle, guest;
+
     SignUpFragmentPresenter signUpFragmentPresenter;
 
 
@@ -67,6 +70,8 @@ public class SignupFragment extends Fragment implements SignUpFragmentInterface 
         logIn = view.findViewById(R.id.loginRedirect);
         emailET = view.findViewById(R.id.signUpUserName);
         passwordET = view.findViewById(R.id.signUpPassword);
+        signupgoogle = view.findViewById(R.id.googleSignUP);
+        guest = view.findViewById(R.id.guest);
         signUpFragmentPresenter = new SignUpFragmentPresenter(this::signUp);
 
     }
