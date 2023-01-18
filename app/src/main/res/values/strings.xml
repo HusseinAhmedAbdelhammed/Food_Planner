@@ -10,4 +10,7 @@
     <string name="createAccount">Creating Account</string>
     <string name="signUP">SignUP</string>
     <string name="haveAccount">already have account?</string>
+    <string name="splach1">Need help with choosing your delicious meal?!</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
 </resources>
