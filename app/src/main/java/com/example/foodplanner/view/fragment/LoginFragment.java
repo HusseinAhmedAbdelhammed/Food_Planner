@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.network.FireBase;
 import com.example.foodplanner.presenters.classes.LogInFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.LogInFragmentInterface;
 import com.example.foodplanner.utils.NavigatorClass;
@@ -38,12 +39,11 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
     EditText loginEmail, loginPassword;
     TextView signUp;
     LogInFragmentPresenter logInFragmentPresenter;
-    GoogleSignInClient client;
-    GoogleSignInOptions options;
+    FireBase fireBase;
+
     private static final String TAG = "LoginFragment";
     private FirebaseAuth auth;
 
-    String token = "217373600742-2ma9luo2jq275fm230jiarutlo81ln45.apps.googleusercontent.com";
 
 
     @Override
@@ -63,11 +63,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         declareComponents(view);
-        options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(token)
-                .requestEmail()
-                .build();
-        client = GoogleSignIn.getClient(getContext(), options);
+
         signInbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,34 +79,20 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
         logingoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                startActivityForResult(fireBase.getClient().getSignInIntent(), 100);
                 Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void signIn() {
 
-        Intent intent = client.getSignInIntent();
-        startActivityForResult(intent, 100);
-    }
-
-    void declareComponents(@NonNull View view) {
-        signInbtn = view.findViewById(R.id.logInbtn);
-        loginEmail = view.findViewById(R.id.logInserName);
-        loginPassword = view.findViewById(R.id.logInPassword);
-        signUp = view.findViewById(R.id.signUpRedirect);
-        logingoogle = view.findViewById(R.id.logInGooglebtn);
-        logInFragmentPresenter = new LogInFragmentPresenter(this);
-        auth = FirebaseAuth.getInstance();
-
-
-    }
 
     @Override
     public void logInSuccess(AuthResult authResult) {
         Toast.makeText(getContext(), "login Successfully",
                 Toast.LENGTH_SHORT).show();
+        NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
+
     }
 
     @Override
@@ -120,40 +102,33 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
     }
 
     @Override
+    public void loginSuccessWithGoogle(){
+            NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
+    }
+
+    @Override
+    public void loginFaildWithGoogle() {
+        Toast.makeText(getContext(), "sorry an error happen please try again",
+                Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            GoogleSignInAccount res = GoogleSignIn.getSignedInAccountFromIntent(data).getResult();
-            if (res != null) {
-
-                try {
-                    task.getResult(ApiException.class);
-                    authWithGoogle(res);
-                    NavigatorClass.navigateBetweenFragments(getView(), R.id.splashFragment);
-
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                }
-
-            } else {
-                Log.d("auth", "on activity Failed ");
-            }
-        }
+        logInFragmentPresenter.loginWithGoogle(requestCode,data);
     }
 
 
-    public void authWithGoogle(GoogleSignInAccount res) {
-        AuthCredential authCredential = GoogleAuthProvider.getCredential(res.getIdToken(), null);
-
-        try {
-           auth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    void declareComponents(@NonNull View view) {
+        signInbtn = view.findViewById(R.id.logInbtn);
+        loginEmail = view.findViewById(R.id.logInserName);
+        loginPassword = view.findViewById(R.id.logInPassword);
+        signUp = view.findViewById(R.id.signUpRedirect);
+        logingoogle = view.findViewById(R.id.logInGooglebtn);
+        logInFragmentPresenter = new LogInFragmentPresenter(this);
+        auth = FirebaseAuth.getInstance();
+        fireBase = new FireBase(getContext());
     }
+
     }
