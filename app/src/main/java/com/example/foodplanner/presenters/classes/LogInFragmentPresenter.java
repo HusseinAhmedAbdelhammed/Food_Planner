@@ -75,6 +75,7 @@ public class LogInFragmentPresenter {
                 }
             } else {
                 Log.d("auth", "on activity Failed ");
+                logInFragmentInterface.loginFaildWithGoogle();
             }
         }
 

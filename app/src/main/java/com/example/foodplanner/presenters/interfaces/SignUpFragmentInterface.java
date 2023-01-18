@@ -7,4 +7,7 @@ import com.google.firebase.auth.AuthResult;
 
 public interface SignUpFragmentInterface {
      void signUp (@NonNull Task<AuthResult> task);
+
+     void sighUpSuccessWithGoogle();
+     void signUpFaildWithGoogle();
 }
