@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="@color/darkBlue"
     android:background="@color/darkBlue"
-    tools:context=".view.fragment.Splach2Fragment">
+    tools:context=".view.fragment.Splach3Fragment">
 
     <ImageView
         android:id="@+id/imageView5"
@@ -14,22 +13,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_marginTop="-120dp"
-        android:src="@drawable/splash2" />
+        android:src="@drawable/splach3" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="287dp"
-        android:layout_height="93dp"
+        android:layout_width="313dp"
+        android:layout_height="97dp"
+        android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:text="@string/splach2"
+        android:text="@string/splach3"
         android:textColor="#EDEAEA"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 
     <Button
-        android:id="@+id/spalsh2Nextbtn"
+        android:id="@+id/spalsh3Nextbtn"
         android:layout_width="236dp"
         android:layout_height="67dp"
         android:layout_gravity="center"
@@ -41,7 +40,7 @@
         android:textStyle="bold|italic"
         />
     <TextView
-        android:id="@+id/spalsh2SkipTV"
+        android:id="@+id/spalsh3SkipTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -61,6 +60,6 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:layout_marginTop="140dp"
-        android:src="@drawable/group_splach2" />
+        android:src="@drawable/group_splach3" />
 
 </FrameLayout>

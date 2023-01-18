@@ -51,5 +51,17 @@
         <action
             android:id="@+id/action_splach2Fragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_splach2Fragment_to_splach3Fragment"
+            app:destination="@id/splach3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splach3Fragment"
+        android:name="com.example.foodplanner.view.fragment.Splach3Fragment"
+        android:label="fragment_splach3"
+        tools:layout="@layout/fragment_splach3" >
+        <action
+            android:id="@+id/action_splach3Fragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
     </fragment>
 </navigation>

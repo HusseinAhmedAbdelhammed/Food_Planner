@@ -15,36 +15,39 @@ import android.widget.TextView;
 import com.example.foodplanner.R;
 import com.example.foodplanner.utils.NavigatorClass;
 
-public class Splach2Fragment extends Fragment {
+
+public class Splach3Fragment extends Fragment {
 
     Button next;
     TextView skip;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splach2, container, false);
+        return inflater.inflate(R.layout.fragment_splach3, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        next = view.findViewById(R.id.spalsh2Nextbtn);
-        skip = view.findViewById(R.id.spalsh2SkipTV);
+        next = view.findViewById(R.id.spalsh3Nextbtn);
+        skip = view.findViewById(R.id.spalsh3SkipTV);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigatorClass.navigateBetweenFragments(view, R.id.action_splach2Fragment_to_splach3Fragment);
+                NavigatorClass.navigateBetweenFragments(view, R.id.action_splach3Fragment_to_signupFragment);
             }
         });
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigatorClass.navigateBetweenFragments(view, R.id.action_splach2Fragment_to_signupFragment);
+                NavigatorClass.navigateBetweenFragments(view, R.id.action_splach3Fragment_to_signupFragment);
 
             }
         });
