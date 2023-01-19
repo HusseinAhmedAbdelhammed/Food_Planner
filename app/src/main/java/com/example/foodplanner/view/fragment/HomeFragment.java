@@ -34,7 +34,6 @@ RecyclerView recHome, catHome;
 HomePresenter homePresenter;
 HomeAdapter adapter;
 ArrayList<Meals>meals;
-
 TestFragmentAdapter catAdapter;
 TestFragmentPresenter testFragmentPresenter;
 
@@ -80,8 +79,7 @@ TestFragmentPresenter testFragmentPresenter;
         testFragmentPresenter =new TestFragmentPresenter(this);
         homePresenter=new HomePresenter(this);
         meals=new ArrayList<>();
-        testPresenter=new TestFragmentPresenter(this);
-        catRec=view.findViewById(R.id.catRec);
+        testFragmentPresenter=new TestFragmentPresenter(this);
     }
 
     @Override
