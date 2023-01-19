@@ -6,6 +6,7 @@ import com.example.foodplanner.network.apiclint.APIClient;
 import com.example.foodplanner.pojo.CategoriesList;
 import com.example.foodplanner.presenters.interfaces.HomeInterface;
 import com.example.foodplanner.presenters.interfaces.TestFragmentInterface;
+import com.example.foodplanner.view.fragment.HomeFragment;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -18,6 +19,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class TestFragmentPresenter {
     TestFragmentInterface testFragmentInterface;
+    HomeInterface homeInterface;
     APIClient client;
     HomeInterface homeInterface;
     private static final String TAG = "SONIC";
@@ -27,10 +29,13 @@ public class TestFragmentPresenter {
         client=APIClient.getInstance();
     }
 
+
     public TestFragmentPresenter(HomeInterface homeInterface) {
         this.homeInterface = homeInterface;
         client=APIClient.getInstance();
     }
+
+
 
     public void getCateg(){
         Log.i(TAG,"HI");
@@ -44,8 +49,10 @@ public class TestFragmentPresenter {
             }
 
             @Override
+
             public void onSuccess(@NonNull CategoriesList categoriesList) {
                 homeInterface.showCats(categoriesList);
+
 
             }
 

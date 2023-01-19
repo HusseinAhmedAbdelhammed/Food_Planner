@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +34,7 @@ RecyclerView recHome, catHome;
 HomePresenter homePresenter;
 HomeAdapter adapter;
 ArrayList<Meals>meals;
+
 TestFragmentAdapter catAdapter;
 TestFragmentPresenter testFragmentPresenter;
 
@@ -56,17 +59,12 @@ TestFragmentPresenter testFragmentPresenter;
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-
-
-
-
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
         homePresenter.getRandomMeal();
+
         testFragmentPresenter.getCateg();
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.HORIZONTAL);
@@ -74,6 +72,7 @@ TestFragmentPresenter testFragmentPresenter;
         manager1.setOrientation(RecyclerView.HORIZONTAL);
         recHome.setLayoutManager(manager);
         catHome.setLayoutManager(manager1);
+
     }
     public void init(View view){
         recHome=view.findViewById(R.id.recHome);
@@ -81,6 +80,8 @@ TestFragmentPresenter testFragmentPresenter;
         testFragmentPresenter =new TestFragmentPresenter(this);
         homePresenter=new HomePresenter(this);
         meals=new ArrayList<>();
+        testPresenter=new TestFragmentPresenter(this);
+        catRec=view.findViewById(R.id.catRec);
     }
 
     @Override
@@ -95,8 +96,10 @@ TestFragmentPresenter testFragmentPresenter;
     }
 
     @Override
+
     public void showCats(CategoriesList categoriesList) {
         catAdapter = new TestFragmentAdapter(getContext(), categoriesList.getCategories());
         catHome.setAdapter(catAdapter);
+
     }
 }

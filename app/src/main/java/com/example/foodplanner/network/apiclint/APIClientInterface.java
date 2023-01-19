@@ -18,7 +18,7 @@ public interface APIClientInterface {
     @GET("filter.php")
     public Observable<MealsList>getMealByIngred(@Query("i") String ingred);
     @GET("search.php")
-    public Observable<MealsList>getMealByName(@Query("s") String name);
+    public Single<MealsList> getMealByName(@Query("s") String name);
     @GET("categories.php")
     public Single<CategoriesList> getCategories();
 }

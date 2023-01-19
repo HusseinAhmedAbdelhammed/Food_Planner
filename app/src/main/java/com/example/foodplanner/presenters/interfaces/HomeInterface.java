@@ -10,4 +10,5 @@ import java.util.List;
 public interface HomeInterface {
      void showRandomMeals(List<MealsList> mealsArrayList);
      void showCats(CategoriesList categoriesList);
+
 }
