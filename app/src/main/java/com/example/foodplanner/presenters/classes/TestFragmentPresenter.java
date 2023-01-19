@@ -12,6 +12,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -19,32 +21,39 @@ public class TestFragmentPresenter {
     TestFragmentInterface testFragmentInterface;
     HomeInterface homeInterface;
     APIClient client;
+    HomeInterface homeInterface;
     private static final String TAG = "SONIC";
     public TestFragmentPresenter(TestFragmentInterface fInterface){
         Log.i(TAG,"hello");
         testFragmentInterface=fInterface;
         client=APIClient.getInstance();
     }
-    public TestFragmentPresenter(HomeInterface homeInterface){
-        Log.i(TAG,"hello");
-        this.homeInterface=homeInterface;
+
+
+    public TestFragmentPresenter(HomeInterface homeInterface) {
+        this.homeInterface = homeInterface;
         client=APIClient.getInstance();
     }
+
+
+
     public void getCateg(){
         Log.i(TAG,"HI");
-        Observable<CategoriesList>catOps=client.getCategories()
+        Single<CategoriesList> catOps = client.getCategories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-        Observer<CategoriesList>observer=new Observer<CategoriesList>() {
+        SingleObserver<CategoriesList> observer= new SingleObserver<CategoriesList>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 Log.i(TAG, "NOT AM ERROR");
-
             }
 
             @Override
-            public void onNext(@NonNull CategoriesList categoriesList) {
-                homeInterface.showCateg(categoriesList);
+
+            public void onSuccess(@NonNull CategoriesList categoriesList) {
+                homeInterface.showCats(categoriesList);
+
+
             }
 
             @Override
@@ -52,12 +61,8 @@ public class TestFragmentPresenter {
                 Log.i(TAG, e.getMessage());
             }
 
-            @Override
-            public void onComplete() {
 
-            }
         };
         catOps.subscribe(observer);
-
     }
 }

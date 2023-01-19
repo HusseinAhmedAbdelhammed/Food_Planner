@@ -30,13 +30,14 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment implements HomeInterface {
-RecyclerView recHome;
+RecyclerView recHome, catHome;
 HomePresenter homePresenter;
 HomeAdapter adapter;
 ArrayList<Meals>meals;
-TestFragmentAdapter testAdapter;
-TestFragmentPresenter testPresenter;
-RecyclerView catRec;
+
+TestFragmentAdapter catAdapter;
+TestFragmentPresenter testFragmentPresenter;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -63,16 +64,20 @@ RecyclerView catRec;
         super.onViewCreated(view, savedInstanceState);
         init(view);
         homePresenter.getRandomMeal();
-        testPresenter.getCateg();
+
+        testFragmentPresenter.getCateg();
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
+        manager.setOrientation(RecyclerView.HORIZONTAL);
         LinearLayoutManager manager1=new LinearLayoutManager(getContext());
         manager1.setOrientation(RecyclerView.HORIZONTAL);
-        manager.setOrientation(RecyclerView.VERTICAL);
         recHome.setLayoutManager(manager);
-        catRec.setLayoutManager(manager1);
+        catHome.setLayoutManager(manager1);
+
     }
     public void init(View view){
         recHome=view.findViewById(R.id.recHome);
+        catHome = view.findViewById(R.id.catRec);
+        testFragmentPresenter =new TestFragmentPresenter(this);
         homePresenter=new HomePresenter(this);
         meals=new ArrayList<>();
         testPresenter=new TestFragmentPresenter(this);
@@ -91,8 +96,10 @@ RecyclerView catRec;
     }
 
     @Override
-    public void showCateg(CategoriesList categoriesList) {
-        testAdapter=new TestFragmentAdapter(getContext(),categoriesList.getCategories());
-        catRec.setAdapter(testAdapter);
+
+    public void showCats(CategoriesList categoriesList) {
+        catAdapter = new TestFragmentAdapter(getContext(), categoriesList.getCategories());
+        catHome.setAdapter(catAdapter);
+
     }
 }

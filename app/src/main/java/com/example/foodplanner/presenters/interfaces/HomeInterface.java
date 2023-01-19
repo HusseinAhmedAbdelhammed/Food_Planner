@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface HomeInterface {
      void showRandomMeals(List<MealsList> mealsArrayList);
-     void showCateg(CategoriesList categoriesList);
+     void showCats(CategoriesList categoriesList);
+
 }

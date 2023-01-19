@@ -15,4 +15,11 @@
     <string name="skip">Skip</string>
     <string name="splach2">Know the ingredients of the meal and how  to do it with us</string>
     <string name="splach3">Do your own plane for a week and add your favourite meals in one place</string>
+    <string name="dailyinspiration">Daily Inspiration</string>
+    <string name="meals">Meals</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="cat">Categories</string>
 </resources>
