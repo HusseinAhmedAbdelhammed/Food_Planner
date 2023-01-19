@@ -80,8 +80,8 @@ TestFragmentPresenter testFragmentPresenter;
         testFragmentPresenter =new TestFragmentPresenter(this);
         homePresenter=new HomePresenter(this);
         meals=new ArrayList<>();
-        testPresenter=new TestFragmentPresenter(this);
-        catRec=view.findViewById(R.id.catRec);
+        testFragmentPresenter=new TestFragmentPresenter(this);
+
     }
 
     @Override

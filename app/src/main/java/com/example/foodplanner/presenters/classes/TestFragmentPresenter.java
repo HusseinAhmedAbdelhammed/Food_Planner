@@ -21,7 +21,7 @@ public class TestFragmentPresenter {
     TestFragmentInterface testFragmentInterface;
     HomeInterface homeInterface;
     APIClient client;
-    HomeInterface homeInterface;
+   
     private static final String TAG = "SONIC";
     public TestFragmentPresenter(TestFragmentInterface fInterface){
         Log.i(TAG,"hello");
