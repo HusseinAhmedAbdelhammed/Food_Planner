@@ -34,7 +34,6 @@ RecyclerView recHome, catHome;
 HomePresenter homePresenter;
 HomeAdapter adapter;
 ArrayList<Meals>meals;
-
 TestFragmentAdapter catAdapter;
 TestFragmentPresenter testFragmentPresenter;
 
