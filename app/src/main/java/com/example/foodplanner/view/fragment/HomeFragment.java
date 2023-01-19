@@ -14,21 +14,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.pojo.CategoriesList;
 import com.example.foodplanner.pojo.Meals;
 import com.example.foodplanner.pojo.MealsList;
 import com.example.foodplanner.presenters.classes.HomePresenter;
+import com.example.foodplanner.presenters.classes.TestFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.HomeInterface;
 import com.example.foodplanner.view.adapters.HomeAdapter;
+import com.example.foodplanner.view.adapters.TestFragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class HomeFragment extends Fragment implements HomeInterface {
-RecyclerView recHome;
+RecyclerView recHome, catHome;
 HomePresenter homePresenter;
 HomeAdapter adapter;
 ArrayList<Meals>meals;
+TestFragmentAdapter catAdapter;
+TestFragmentPresenter testFragmentPresenter;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -61,12 +67,18 @@ ArrayList<Meals>meals;
         super.onViewCreated(view, savedInstanceState);
         init(view);
         homePresenter.getRandomMeal();
+        testFragmentPresenter.getCateg();
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
+        manager.setOrientation(RecyclerView.HORIZONTAL);
+        LinearLayoutManager manager1=new LinearLayoutManager(getContext());
+        manager1.setOrientation(RecyclerView.HORIZONTAL);
         recHome.setLayoutManager(manager);
+        catHome.setLayoutManager(manager1);
     }
     public void init(View view){
         recHome=view.findViewById(R.id.recHome);
+        catHome = view.findViewById(R.id.catRec);
+        testFragmentPresenter =new TestFragmentPresenter(this);
         homePresenter=new HomePresenter(this);
         meals=new ArrayList<>();
     }
@@ -80,5 +92,11 @@ ArrayList<Meals>meals;
         adapter=new HomeAdapter(getContext(),meals);
         recHome.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void showCats(CategoriesList categoriesList) {
+        catAdapter = new TestFragmentAdapter(getContext(), categoriesList.getCategories());
+        catHome.setAdapter(catAdapter);
     }
 }

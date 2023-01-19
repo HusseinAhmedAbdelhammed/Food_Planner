@@ -4,6 +4,7 @@ import com.example.foodplanner.pojo.CategoriesList;
 import com.example.foodplanner.pojo.MealsList;
 
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -19,5 +20,5 @@ public interface APIClientInterface {
     @GET("search.php")
     public Observable<MealsList>getMealByName(@Query("s") String name);
     @GET("categories.php")
-    public Observable<CategoriesList>getCategories();
+    public Single<CategoriesList> getCategories();
 }
