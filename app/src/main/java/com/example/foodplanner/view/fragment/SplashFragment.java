@@ -1,5 +1,7 @@
 package com.example.foodplanner.view.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.database.SharedPrefrencesClass;
 import com.example.foodplanner.utils.NavigatorClass;
 
 public class SplashFragment extends Fragment {
     Button getStarted;
+    SharedPrefrencesClass sharedPref;
 
 
     @Override
@@ -36,13 +40,23 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getStarted = view.findViewById(R.id.getStartedbtn);
+        sharedPref = new SharedPrefrencesClass(getActivity());
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
+                if(SharedPrefrencesClass.isIsFirstTime()){
+                    SharedPrefrencesClass.setIsFirstTime(false);
+                    NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
+                } else if(SharedPrefrencesClass.isIsLogedIn()){
+                    NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
+                }else {
+                    NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_signupFragment);
+                }
+            }
+//                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
 //                NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
                 //NavigatorClass.navigateBetweenFragments(view, R.id.nav_host_fragment_home);
-            }
+
         });
     }
 }
