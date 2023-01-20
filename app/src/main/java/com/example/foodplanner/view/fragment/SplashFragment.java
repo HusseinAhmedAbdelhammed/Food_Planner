@@ -47,13 +47,16 @@ public class SplashFragment extends Fragment {
                 if(SharedPrefrencesClass.isIsFirstTime()){
                     SharedPrefrencesClass.setIsFirstTime(false);
                     NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
-                } else{
+                } else if(SharedPrefrencesClass.isIsLogedIn()){
+                    NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
+                }else {
                     NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_signupFragment);
                 }
+            }
 //                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
 //                NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
                 //NavigatorClass.navigateBetweenFragments(view, R.id.nav_host_fragment_home);
-            }
+
         });
     }
 }

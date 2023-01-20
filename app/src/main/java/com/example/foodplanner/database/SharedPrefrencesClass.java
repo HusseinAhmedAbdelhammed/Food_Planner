@@ -16,7 +16,7 @@ public class SharedPrefrencesClass {
         sharedPref =activity.getSharedPreferences(fileName,Context.MODE_PRIVATE);
         editor = sharedPref.edit();
         isFirstTime = sharedPref.getBoolean("firstTime", true);
-        isLogedIn = sharedPref.getBoolean("logedIn", true);
+        isLogedIn = sharedPref.getBoolean("logedIn", false);
     }
 
     public static boolean isIsFirstTime() {
@@ -29,4 +29,13 @@ public class SharedPrefrencesClass {
         SharedPrefrencesClass.isFirstTime = isFirstTime;
     }
 
+    public static boolean isIsLogedIn() {
+        return isLogedIn;
+    }
+
+    public static void setIsLogedIn(boolean isLogedIn) {
+        editor.putBoolean("logedIn", isLogedIn);
+        editor.commit();
+        SharedPrefrencesClass.isLogedIn = isLogedIn;
+    }
 }

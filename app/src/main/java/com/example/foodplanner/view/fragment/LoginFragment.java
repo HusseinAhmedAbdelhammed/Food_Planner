@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.database.SharedPrefrencesClass;
 import com.example.foodplanner.network.FireBase;
 import com.example.foodplanner.presenters.classes.LogInFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.LogInFragmentInterface;
@@ -89,6 +90,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
 
     @Override
     public void logInSuccess(AuthResult authResult) {
+        SharedPrefrencesClass.setIsLogedIn(true);
         Toast.makeText(getContext(), "login Successfully",
                 Toast.LENGTH_SHORT).show();
         NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
@@ -103,7 +105,8 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
 
     @Override
     public void loginSuccessWithGoogle(){
-            NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
+        SharedPrefrencesClass.setIsLogedIn(true);
+        NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
     }
 
     @Override
