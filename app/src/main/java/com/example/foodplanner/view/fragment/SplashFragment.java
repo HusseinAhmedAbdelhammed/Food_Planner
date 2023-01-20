@@ -1,5 +1,7 @@
 package com.example.foodplanner.view.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,8 @@ import com.example.foodplanner.utils.NavigatorClass;
 
 public class SplashFragment extends Fragment {
     Button getStarted;
+    SharedPreferences sharedPref;
+    boolean isFirstTime;
 
 
     @Override
@@ -36,10 +40,20 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getStarted = view.findViewById(R.id.getStartedbtn);
+        sharedPref = getActivity().getSharedPreferences("foodPlanner", Context.MODE_PRIVATE);
+        isFirstTime = sharedPref.getBoolean("firstTime", true);
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
+                if(isFirstTime){
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("firstTime", false);
+                    editor.commit();
+                    NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
+                } else{
+                    NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_signupFragment);
+                }
+//                NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
 //                NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
                 //NavigatorClass.navigateBetweenFragments(view, R.id.nav_host_fragment_home);
             }
