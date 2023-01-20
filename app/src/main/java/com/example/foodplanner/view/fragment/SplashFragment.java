@@ -13,12 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.database.SharedPrefrencesClass;
 import com.example.foodplanner.utils.NavigatorClass;
 
 public class SplashFragment extends Fragment {
     Button getStarted;
-    SharedPreferences sharedPref;
-    boolean isFirstTime;
+    SharedPrefrencesClass sharedPref;
 
 
     @Override
@@ -40,15 +40,12 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getStarted = view.findViewById(R.id.getStartedbtn);
-        sharedPref = getActivity().getSharedPreferences("foodPlanner", Context.MODE_PRIVATE);
-        isFirstTime = sharedPref.getBoolean("firstTime", true);
+        sharedPref = new SharedPrefrencesClass(getActivity());
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isFirstTime){
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putBoolean("firstTime", false);
-                    editor.commit();
+                if(SharedPrefrencesClass.isIsFirstTime()){
+                    SharedPrefrencesClass.setIsFirstTime(false);
                     NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_splach1Fragment);
                 } else{
                     NavigatorClass.navigateBetweenFragments(view, R.id.action_splashFragment_to_signupFragment);
