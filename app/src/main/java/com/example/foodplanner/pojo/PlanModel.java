@@ -11,24 +11,19 @@ public class PlanModel {
     @PrimaryKey
     @ColumnInfo(name = "planId")
     @NonNull
-    private int planId;
+    private long planId;
     @ColumnInfo(name = "planMName")
     private String planMName;
-    @ColumnInfo(name = "planRecipe")
-    private String planRecipe;
-    @ColumnInfo(name = "planInstructions")
-    private String planInstructions;
     @ColumnInfo(name="planThum")
     private String planThum;
-    @ColumnInfo(name = "planYouTube")
-    private String planYouTube;
+
     @ColumnInfo(name = "day")
     private String day;
     @ColumnInfo(name = "type")
     private String type;
 
 
-    public int getPlanId() {
+    public long getPlanId() {
         return planId;
     }
 
@@ -44,21 +39,9 @@ public class PlanModel {
         this.planMName = planMName;
     }
 
-    public String getPlanRecipe() {
-        return planRecipe;
-    }
 
-    public void setPlanRecipe(String planRecipe) {
-        this.planRecipe = planRecipe;
-    }
 
-    public String getPlanInstructions() {
-        return planInstructions;
-    }
 
-    public void setPlanInstructions(String planInstructions) {
-        this.planInstructions = planInstructions;
-    }
 
     public String getPlanThum() {
         return planThum;
@@ -68,13 +51,7 @@ public class PlanModel {
         this.planThum = planThum;
     }
 
-    public String getPlanYouTube() {
-        return planYouTube;
-    }
 
-    public void setPlanYouTube(String planYouTube) {
-        this.planYouTube = planYouTube;
-    }
 
     public String getDay() {
         return day;

@@ -3,7 +3,10 @@ package com.example.foodplanner.database.plan;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
 
 import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.pojo.PlanModel;
@@ -13,11 +16,11 @@ import java.util.List;
 @Dao
 public interface PlanDAO {
     @Query("select * from plans")
-    List<PlanModel> getAllPlans();
-    @Query("select * from plans where pMealName LIKE :name")
-    PlanModel getPlan(String name);
-    @Insert
-    void insertMeal(PlanModel planModel);
+    Single<List<PlanModel>> getAllPlans();
+    @Query("select * from plans where planMName LIKE :name")
+    Single<PlanModel> getPlan(String name);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    Completable insertMeal(PlanModel planModel);
     @Delete
-    void deleteMeal(PlanModel planModel);
+    Completable deleteMeal(PlanModel planModel);
 }
