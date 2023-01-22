@@ -15,6 +15,7 @@ import com.example.foodplanner.R;
 
 public class SearchFragment extends Fragment {
     EditText search;
+    String request;
 
 
     @Override
@@ -34,9 +35,24 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+        switch (request){
+            case "Ingredient":
+                //code
+                break;
+            case "Area":
+                //code
+                break;
+            case "Category":
+                //code
+                break;
+            case "Name":
+                //code
+                break;
+        }
     }
 
     private void init(View view) {
         search = view.findViewById(R.id.searchBar1);
+        request = SearchFragmentArgs.fromBundle(getArguments()).getRequest();
     }
 }
