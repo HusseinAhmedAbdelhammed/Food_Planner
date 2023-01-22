@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.foodplanner.R;
 public class SearchFragment extends Fragment {
     EditText search;
     String request;
+    private static final String TAG = "SearchFragment";
 
 
     @Override
@@ -38,6 +40,7 @@ public class SearchFragment extends Fragment {
         switch (request){
             case "Ingredient":
                 //code
+                Log.i(TAG, "onViewCreated: "  +request);
                 break;
             case "Area":
                 //code

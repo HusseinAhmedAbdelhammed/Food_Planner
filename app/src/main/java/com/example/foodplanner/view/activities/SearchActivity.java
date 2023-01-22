@@ -15,7 +15,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        NavController navController2= Navigation.findNavController(this,R.id.search_nav);
-        NavigationUI.setupActionBarWithNavController(this,navController2);
+//        NavController navController2= Navigation.findNavController(this,R.id.search_nav);
+//        NavigationUI.setupActionBarWithNavController(this,navController2);
     }
 }
