@@ -37,7 +37,6 @@ public class SearchHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        
     }
     void init(View view){
         search = view.findViewById(R.id.searchBar);
