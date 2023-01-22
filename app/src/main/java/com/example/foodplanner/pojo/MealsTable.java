@@ -19,6 +19,7 @@ public class MealsTable {
     private String instructions;
     @ColumnInfo(name="thum")
     private String thum;
+
     @ColumnInfo(name = "youTube")
     private String youTube;
 
@@ -69,4 +70,5 @@ public class MealsTable {
     public void setYouTube(String youTube) {
         this.youTube = youTube;
     }
+
 }
