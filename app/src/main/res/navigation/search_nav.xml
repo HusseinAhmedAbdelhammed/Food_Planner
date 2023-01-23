@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_nav"
+    app:startDestination="@id/searchHomeFragment">
+
+    <fragment
+        android:id="@+id/searchHomeFragment"
+        android:name="com.example.foodplanner.view.fragment.SearchHomeFragment"
+        android:label="fragment_search_home"
+        tools:layout="@layout/fragment_search_home">
+        <action
+            android:id="@+id/action_searchHomeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.foodplanner.view.fragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <argument
+            android:name="request"
+            app:argType="string" />
+    </fragment>
+</navigation>
