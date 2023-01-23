@@ -1,4 +1,4 @@
-package com.example.foodplanner.network;
+package com.example.foodplanner.network.firebase;
 
 import android.content.Context;
 

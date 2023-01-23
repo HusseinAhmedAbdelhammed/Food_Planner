@@ -22,7 +22,7 @@ public class ImageLoader {
         try {
             imgView.setImageBitmap(Picasso.with(con).load(url).get());
         } catch (IOException e) {
-            Log.i("TAG", "loadImage: "+e.getMessage());
+            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
         }
 
     }
@@ -48,27 +48,34 @@ public class ImageLoader {
             image.compress(Bitmap.CompressFormat.PNG,100,outputStream);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
         }finally {
             try {
                 outputStream.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
             }
         }
         result=directory.getAbsolutePath()+Consts.DELIMITER_IMAGE_PATH+pName+"jpg";
         return result;
     }
     public static void readImgFromRoom(String url,ImageView imageView){
+        FileInputStream fis=null;
         String[] pathAndName=url.split(Consts.DELIMITER_IMAGE_PATH);
         File file=new File(pathAndName[0],pathAndName[1]);
         try {
-            Bitmap image= BitmapFactory.decodeStream(new FileInputStream(file));
+            fis=new FileInputStream(file);
+            Bitmap image= BitmapFactory.decodeStream(fis);
             imageView.setImageBitmap(image);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
+        }
+        try {
+            fis.close();
+        } catch (IOException e) {
+            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
         }
 
     }

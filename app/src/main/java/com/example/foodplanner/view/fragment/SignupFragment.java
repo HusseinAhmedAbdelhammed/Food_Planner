@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.network.FireBase;
+import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.classes.SignUpFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.SignUpFragmentInterface;
 import com.example.foodplanner.utils.NavigatorClass;

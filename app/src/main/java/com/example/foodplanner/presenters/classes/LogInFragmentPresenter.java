@@ -8,9 +8,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.foodplanner.network.FireBase;
+import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.interfaces.LogInFragmentInterface;
-import com.example.foodplanner.utils.NavigatorClass;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;

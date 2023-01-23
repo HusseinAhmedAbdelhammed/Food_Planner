@@ -2,7 +2,6 @@ package com.example.foodplanner.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,22 +16,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.database.SharedPrefrencesClass;
-import com.example.foodplanner.network.FireBase;
+import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.classes.LogInFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.LogInFragmentInterface;
 import com.example.foodplanner.utils.NavigatorClass;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginFragment extends Fragment implements LogInFragmentInterface {
     Button signInbtn;
