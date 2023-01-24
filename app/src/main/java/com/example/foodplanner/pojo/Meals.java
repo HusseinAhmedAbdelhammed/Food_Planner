@@ -1,6 +1,9 @@
 package com.example.foodplanner.pojo;
 
-public class Meals {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Meals implements Serializable {
     private int idMeal;//im
     private String strMeal;//im
     private String strCategory;//im
@@ -433,4 +436,5 @@ public class Meals {
     public void setStrMeasure20(String strMeasure20) {
         this.strMeasure20 = strMeasure20;
     }
+
 }
