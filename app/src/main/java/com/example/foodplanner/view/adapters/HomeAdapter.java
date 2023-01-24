@@ -56,11 +56,4 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
         return meals.size();
     }
 
-    public Meals getPassedMeal() {
-        return passedMeal;
-    }
-
-    public void setPassedMeal(Meals passedMeal) {
-        this.passedMeal = passedMeal;
-    }
 }
