@@ -17,8 +17,8 @@ import java.util.List;
 public interface PlanDAO {
     @Query("select * from plans")
     Single<List<PlanModel>> getAllPlans();
-    @Query("select * from plans where planMName LIKE :name")
-    Single<PlanModel> getPlan(String name);
+    @Query("select * from plans where day LIKE :day")
+    Single<PlanModel> getPlan(String day);
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable insertMeal(PlanModel planModel);
     @Delete

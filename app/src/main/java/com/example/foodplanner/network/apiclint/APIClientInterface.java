@@ -12,11 +12,11 @@ public interface APIClientInterface {
     @GET("random.php")
     public Observable<MealsList>getRandomMeal();
     @GET("filter.php")
-    public Observable<MealsList>getMealByCountry(@Query("a") String countryName);
+    public Single<MealsList>getMealByCountry(@Query("a") String countryName);
     @GET("filter.php")
-    public Observable<MealsList>getMealByCategory(@Query("c") String category);
+    public Single<MealsList>getMealByCategory(@Query("c") String category);
     @GET("filter.php")
-    public Observable<MealsList>getMealByIngred(@Query("i") String ingred);
+    public Single<MealsList>getMealByIngred(@Query("i") String ingred);
     @GET("search.php")
     public Single<MealsList> getMealByName(@Query("s") String name);
     @GET("categories.php")

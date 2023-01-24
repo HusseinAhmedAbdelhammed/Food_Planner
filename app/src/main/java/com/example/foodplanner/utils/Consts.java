@@ -11,5 +11,8 @@ public class Consts {
     public static final String DIRECTORY="imgDir";
     public static final String COLLECTION="users";
     public static final String TAG="Sonic";
+    public static final String CAT_TARGET="Category";
+    public static final String AREA_TARGET="Area";
+    public static final String ING_TARGET="Ingredient";
 
 }

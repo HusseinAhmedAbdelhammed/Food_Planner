@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -16,14 +17,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+
 public class ImageLoader {
     public static void loadImage(Context con, String url, ImageView imgView){
 
-        try {
-            imgView.setImageBitmap(Picasso.with(con).load(url).get());
-        } catch (IOException e) {
-            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
-        }
+        Picasso.with(con).load(url).into(imgView);
+
 
     }
     public static void loadIngImage(Context con,String ingName,ImageView imgView,String size){
@@ -37,13 +38,13 @@ public class ImageLoader {
 
 
     }
-    public static String saveImageToRoom(String url,Context con,String pName){
+    public static String saveImageToRoom(ImageView imgView,Context con,String pName){
         String result="";
         File directory=con.getDir(Consts.DIRECTORY,Context.MODE_PRIVATE);
         File imagFIle=new File(directory,pName+".jpg");
         FileOutputStream outputStream=null;
         try {
-            Bitmap image=Picasso.with(con).load(url).get();
+            Bitmap image=((BitmapDrawable)imgView.getDrawable()).getBitmap();
             outputStream=new FileOutputStream(imagFIle);
             image.compress(Bitmap.CompressFormat.PNG,100,outputStream);
 
