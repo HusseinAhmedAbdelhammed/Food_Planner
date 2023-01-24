@@ -23,6 +23,5 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
         mealThum=itemView.findViewById(R.id.mealThum);
         constraintLayout=itemView.findViewById(R.id.constLay);
 
-
     }
 }

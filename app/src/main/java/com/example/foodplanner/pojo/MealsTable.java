@@ -23,6 +23,8 @@ public class MealsTable {
     @ColumnInfo(name = "youTube")
     private String youTube;
 
+
+
     public int getMealId() {
         return mealId;
     }

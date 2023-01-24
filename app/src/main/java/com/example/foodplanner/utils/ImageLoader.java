@@ -17,15 +17,20 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ImageLoader {
-    public static void loadImage(Context con, String url, ImageView imgView){
+//    public static void loadImage(Context con, String url, ImageView imgView){
+//
+//        try {
+//            imgView.setImageBitmap(Picasso.with(con).load(url).get());
+//        } catch (IOException e) {
+//            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
+//        }
 
-        try {
-            imgView.setImageBitmap(Picasso.with(con).load(url).get());
-        } catch (IOException e) {
-            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
-        }
+    public static void loadImage(Context con, String url, ImageView imgView){
+        Picasso.with(con).load(url).into(imgView);
 
     }
+
+
     public static void loadIngImage(Context con,String ingName,ImageView imgView,String size){
         if(Objects.equals(size, Consts.SIZE_BIG)){
             String url="https://www.themealdb.com/images/ingredients/"+ingName+".png";

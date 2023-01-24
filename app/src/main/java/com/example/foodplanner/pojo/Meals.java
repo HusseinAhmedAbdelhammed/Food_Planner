@@ -1,6 +1,8 @@
 package com.example.foodplanner.pojo;
 
-public class Meals {
+import java.io.Serializable;
+
+public class Meals implements Serializable {
     private int idMeal;//im
     private String strMeal;//im
     private String strCategory;//im

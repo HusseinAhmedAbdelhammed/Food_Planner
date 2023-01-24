@@ -20,7 +20,8 @@ import com.example.foodplanner.presenters.interfaces.TestFragmentInterface;
 import com.example.foodplanner.view.adapters.TestFragmentAdapter;
 
 
-public class CatFragment extends Fragment implements TestFragmentInterface {
+public class
+CatFragment extends Fragment implements TestFragmentInterface {
 RecyclerView rec;
 TestFragmentPresenter presenter;
 TestFragmentAdapter adapter;
