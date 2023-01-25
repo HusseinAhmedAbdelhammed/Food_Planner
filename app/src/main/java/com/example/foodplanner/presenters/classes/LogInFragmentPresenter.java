@@ -8,8 +8,10 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.foodplanner.database.SharedPrefrencesClass;
 import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.interfaces.LogInFragmentInterface;
+import com.example.foodplanner.utils.FireStoreData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -41,6 +43,8 @@ public class LogInFragmentPresenter {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+                                FireStoreData.setMail(email);
+                                SharedPrefrencesClass.setEmailWithSaredPref(email);
                                 logInFragmentInterface.logInSuccess(authResult);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -64,10 +68,13 @@ public class LogInFragmentPresenter {
         if (requestCode == 100) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             GoogleSignInAccount res = GoogleSignIn.getSignedInAccountFromIntent(data).getResult();
+
             if (res != null) {
                 try {
                     task.getResult(ApiException.class);
                     authWithGoogle(res);
+                    FireStoreData.setMail(res.getEmail());
+                    SharedPrefrencesClass.setEmailWithSaredPref(res.getEmail());
                     logInFragmentInterface.loginSuccessWithGoogle();
                 } catch (ApiException e) {
                     e.printStackTrace();

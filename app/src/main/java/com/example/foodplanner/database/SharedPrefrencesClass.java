@@ -8,6 +8,7 @@ public class SharedPrefrencesClass {
     SharedPreferences sharedPref;
     static boolean isFirstTime;
     static boolean isLogedIn;
+    static String sharedPrefEmail;
     static String fileName = "foodPlanner";
     static SharedPreferences.Editor editor;
 
@@ -37,5 +38,11 @@ public class SharedPrefrencesClass {
         editor.putBoolean("logedIn", isLogedIn);
         editor.commit();
         SharedPrefrencesClass.isLogedIn = isLogedIn;
+    }
+
+    public static void setEmailWithSaredPref(String email){
+        editor.putString("sharedPrefEmail", email);
+        editor.commit();
+        SharedPrefrencesClass.sharedPrefEmail  = email;
     }
 }
