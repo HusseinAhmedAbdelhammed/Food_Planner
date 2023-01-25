@@ -2,6 +2,7 @@ package com.example.foodplanner.repository;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -11,6 +12,7 @@ import com.example.foodplanner.database.plan.PlanDAO;
 import com.example.foodplanner.network.firebase.FireStore;
 import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.pojo.PlanModel;
+import com.example.foodplanner.presenters.interfaces.FavouritePresenterInterface;
 import com.example.foodplanner.utils.Consts;
 import com.example.foodplanner.utils.FireStoreData;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,8 +23,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class Repository {
     private Context con;
@@ -31,15 +38,33 @@ public class Repository {
     private PlanDAO planDAO;
     private MealDAO mealDAO;
     private FireStore fireStoredb;
+    private FavouritePresenterInterface favouritePresenterInterface;
     private Repository(Context con){
         this.con=con;
         dataBaseInstance=RoomInstance.getInstance(con);
         planDAO= dataBaseInstance.planDAO();
         mealDAO= dataBaseInstance.mealDAO();
     }
-public static Repository getInstance(Context con){
+
+    public Repository(Context con, FavouritePresenterInterface favouritePresenterInterface) {
+        this.con = con;
+        this.favouritePresenterInterface = favouritePresenterInterface;
+        dataBaseInstance=RoomInstance.getInstance(con);
+        planDAO= dataBaseInstance.planDAO();
+        mealDAO= dataBaseInstance.mealDAO();
+    }
+
+    public static Repository getInstance(Context con){
         if(instance==null){
             instance=new Repository(con);
+        }
+        return instance;
+    }
+
+    public static Repository getInstance(Context con,
+                                         FavouritePresenterInterface favouritePresenterInterface){
+        if(instance==null){
+            instance=new Repository(con, favouritePresenterInterface);
         }
         return instance;
     }
@@ -52,15 +77,75 @@ public static Repository getInstance(Context con){
     public Completable deletePlan(PlanModel planModel){
         return planDAO.deleteMeal(planModel);
     }
-    public Single<List<MealsTable>>getFavorite(){
-        return mealDAO.getAllMeals();
+    //Single<List<MealsTable>>
+
+    public void getFavorite() {
+        Single<List<MealsTable>> favouriteList = mealDAO.getAllMeals().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        SingleObserver<List<MealsTable>> favouriteObserver = new SingleObserver<List<MealsTable>>() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<MealsTable> mealsTables) {
+                favouritePresenterInterface.getAllFavMeals(mealsTables);
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        favouriteList.subscribe(favouriteObserver);
     }
-    public Completable insertFavorite(MealsTable mealsTable){
-        return mealDAO.insertMeal(mealsTable);
+
+    public void insertFavorite(MealsTable mealsTable) {
+        Completable insertObservable = mealDAO.insertMeal(mealsTable).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        CompletableObserver insertObserver = new CompletableObserver() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Toast.makeText(con, "inset successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        insertObservable.subscribe(insertObserver);
+
     }
-    public Completable deleteFavorite(MealsTable mealsTable){
-        return mealDAO.deleteMeal(mealsTable);
+
+    public void deleteFavorite(MealsTable mealsTable) {
+        Completable deleteObsevable = mealDAO.deleteMeal(mealsTable).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        CompletableObserver deleteObserver = new CompletableObserver() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+            }
+
+            @Override
+            public void onComplete() {
+                Toast.makeText(con, "deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        deleteObsevable.subscribe(deleteObserver);
     }
+
+
     public void backup(ArrayList<Integer> favIDs,ArrayList<String> plans){
         fireStoredb=FireStore.getInstance();
         Map<String,Object> data=new HashMap<>();

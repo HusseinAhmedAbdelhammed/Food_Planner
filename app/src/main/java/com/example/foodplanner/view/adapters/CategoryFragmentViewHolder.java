@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.R;
 
-public class TestFragmentViewHolder extends RecyclerView.ViewHolder {
+public class CategoryFragmentViewHolder extends RecyclerView.ViewHolder {
     public TextView catName;
     public ImageView catImg;
     public ConstraintLayout constraintLayout;
     public View layout;
-    public TestFragmentViewHolder(@NonNull View itemView) {
+    public CategoryFragmentViewHolder(@NonNull View itemView) {
         super(itemView);
         layout=itemView;
         catName=itemView.findViewById(R.id.catName);

@@ -153,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_weight="1"
+                    android:layout_marginRight="5dp"
                     android:text="Add to favourite" />
 
                 <Button
@@ -160,6 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="Add to Plan" />
             </LinearLayout>

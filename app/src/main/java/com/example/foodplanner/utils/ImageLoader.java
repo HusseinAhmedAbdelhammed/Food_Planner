@@ -52,21 +52,16 @@ public class ImageLoader {
         File directory=con.getDir(Consts.DIRECTORY,Context.MODE_PRIVATE);
         File imagFIle=new File(directory,pName+".jpg");
         FileOutputStream outputStream=null;
+        Bitmap image;
         try {
-            Bitmap image=((BitmapDrawable)imgView.getDrawable()).getBitmap();
+            image =((BitmapDrawable)imgView.getDrawable()).getBitmap();
             outputStream=new FileOutputStream(imagFIle);
             image.compress(Bitmap.CompressFormat.PNG,100,outputStream);
-
+            outputStream.close();
         } catch (FileNotFoundException e) {
             Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
         } catch (IOException e) {
             Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
-        }finally {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
-            }
         }
         result=directory.getAbsolutePath()+Consts.DELIMITER_IMAGE_PATH+pName+"jpg";
         return result;

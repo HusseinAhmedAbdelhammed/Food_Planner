@@ -23,7 +23,14 @@ public class MealsTable {
     @ColumnInfo(name = "youTube")
     private String youTube;
 
-
+    public MealsTable(int mealId, String mealName, String recipe, String instructions, String thum, String youTube) {
+        this.mealId = mealId;
+        this.mealName = mealName;
+        this.recipe = recipe;
+        this.instructions = instructions;
+        this.thum = thum;
+        this.youTube = youTube;
+    }
 
     public int getMealId() {
         return mealId;

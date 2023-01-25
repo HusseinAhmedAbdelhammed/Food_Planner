@@ -14,26 +14,26 @@ import com.example.foodplanner.utils.ImageLoader;
 
 import java.util.ArrayList;
 
-public class TestFragmentAdapter extends RecyclerView.Adapter<TestFragmentViewHolder> {
+public class CategoryFragmentAdapter extends RecyclerView.Adapter<CategoryFragmentViewHolder> {
     private final Context con;
     private ArrayList<Category> categories;
 
-    public TestFragmentAdapter(Context con, ArrayList<Category> categories) {
+    public CategoryFragmentAdapter(Context con, ArrayList<Category> categories) {
         this.con = con;
         this.categories = categories;
     }
 
     @NonNull
     @Override
-    public TestFragmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryFragmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view=inflater.inflate(R.layout.cat_layout,parent,false);
-        TestFragmentViewHolder viewHolder=new TestFragmentViewHolder(view);
+        CategoryFragmentViewHolder viewHolder=new CategoryFragmentViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TestFragmentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryFragmentViewHolder holder, int position) {
         holder.catName.setText(categories.get(position).getStrCategory());
         ImageLoader.loadImage(con,categories.get(position).getStrCategoryThumb(),holder.catImg);
 

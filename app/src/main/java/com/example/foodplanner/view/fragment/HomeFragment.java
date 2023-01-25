@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +21,7 @@ import com.example.foodplanner.presenters.classes.HomePresenter;
 import com.example.foodplanner.presenters.classes.TestFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.HomeInterface;
 import com.example.foodplanner.view.adapters.HomeAdapter;
-import com.example.foodplanner.view.adapters.TestFragmentAdapter;
+import com.example.foodplanner.view.adapters.CategoryFragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,7 @@ RecyclerView recHome, catHome;
 HomePresenter homePresenter;
 HomeAdapter adapter;
 ArrayList<Meals>meals;
-TestFragmentAdapter catAdapter;
+CategoryFragmentAdapter catAdapter;
 TestFragmentPresenter testFragmentPresenter;
 
 
@@ -97,7 +95,7 @@ TestFragmentPresenter testFragmentPresenter;
     @Override
 
     public void showCats(CategoriesList categoriesList) {
-        catAdapter = new TestFragmentAdapter(getContext(), categoriesList.getCategories());
+        catAdapter = new CategoryFragmentAdapter(getContext(), categoriesList.getCategories());
         catHome.setAdapter(catAdapter);
 
     }

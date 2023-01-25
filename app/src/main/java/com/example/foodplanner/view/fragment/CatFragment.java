@@ -17,14 +17,14 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.pojo.CategoriesList;
 import com.example.foodplanner.presenters.classes.TestFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.TestFragmentInterface;
-import com.example.foodplanner.view.adapters.TestFragmentAdapter;
+import com.example.foodplanner.view.adapters.CategoryFragmentAdapter;
 
 
 public class
 CatFragment extends Fragment implements TestFragmentInterface {
 RecyclerView rec;
 TestFragmentPresenter presenter;
-TestFragmentAdapter adapter;
+CategoryFragmentAdapter adapter;
 
     public CatFragment() {
         // Required empty public constructor
@@ -60,7 +60,7 @@ TestFragmentAdapter adapter;
 
     @Override
     public void showCategories(CategoriesList categoriesList) {
-        adapter=new TestFragmentAdapter(getContext(),categoriesList.getCategories());
+        adapter=new CategoryFragmentAdapter(getContext(),categoriesList.getCategories());
         rec.setAdapter(adapter);
     }
     public void init(View view){

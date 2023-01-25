@@ -7,22 +7,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.pojo.Meals;
+import com.example.foodplanner.pojo.MealsTable;
+import com.example.foodplanner.presenters.classes.MealDetailsPresenter;
 import com.example.foodplanner.utils.ImageLoader;
 import com.example.foodplanner.utils.MealSender;
-import com.example.foodplanner.view.adapters.HomeAdapter;
+import com.example.foodplanner.utils.RecipeMaker;
 import com.example.foodplanner.view.adapters.MealDetailsIngredientAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MealDetailsActivity extends AppCompatActivity {
     ImageView mealThum;
@@ -32,6 +34,9 @@ public class MealDetailsActivity extends AppCompatActivity {
     RecyclerView ingredientRecycleView;
     ArrayList<String> ingredient;
     MealDetailsIngredientAdapter adapter;
+    Button addToFav, addToPlan;
+    MealDetailsPresenter mealDetailsPresenter;
+    MealsTable mealsTable;
     private static final String TAG = "MealDetailsActivity";
 
     @Override
@@ -53,7 +58,16 @@ public class MealDetailsActivity extends AppCompatActivity {
         });
         adapter=new MealDetailsIngredientAdapter(this,ingredient);
         ingredientRecycleView.setAdapter(adapter);
-
+        addToFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mealsTable = new MealsTable(passedMeal.getIdMeal(),passedMeal.getStrMeal(),
+                        RecipeMaker.makeRecipe(getAllIngredientList(passedMeal)),passedMeal.getStrInstructions(),
+                        ImageLoader.saveImageToRoom(mealThum, MealDetailsActivity.this, passedMeal.getStrMeal())
+                        ,passedMeal.getStrYoutube());
+                mealDetailsPresenter.insertMeal(mealsTable);
+            }
+        });
     }
 
     private void declare() {
@@ -71,6 +85,9 @@ public class MealDetailsActivity extends AppCompatActivity {
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(RecyclerView.HORIZONTAL);
         ingredientRecycleView.setLayoutManager(manager);
+        addToFav = findViewById(R.id.addToFavMealDetails);
+        addToPlan = findViewById(R.id.addToPlanMealDetails);
+        mealDetailsPresenter = new MealDetailsPresenter(this);
     }
 
      ArrayList<String> getAllIngredientList(Meals meal){
