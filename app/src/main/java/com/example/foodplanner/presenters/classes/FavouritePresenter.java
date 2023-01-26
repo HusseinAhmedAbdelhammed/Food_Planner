@@ -3,6 +3,7 @@ package com.example.foodplanner.presenters.classes;
 import android.content.Context;
 
 import com.example.foodplanner.pojo.MealsTable;
+import com.example.foodplanner.presenters.interfaces.FavouriteInterface;
 import com.example.foodplanner.presenters.interfaces.FavouritePresenterInterface;
 import com.example.foodplanner.repository.Repository;
 import com.example.foodplanner.view.fragment.FavouriteFragment;
@@ -11,17 +12,17 @@ import java.util.List;
 
 public class FavouritePresenter implements FavouritePresenterInterface {
 
-    FavouriteFragment favouriteFragment;
+    FavouriteInterface favouriteInterface;
     Context con;
 
-    public FavouritePresenter(Context context, FavouriteFragment favouriteFragment) {
-        this.favouriteFragment = favouriteFragment;
+    public FavouritePresenter(Context context, FavouriteInterface favouriteInterface) {
+        this.favouriteInterface = favouriteInterface;
         this.con = context;
     }
 
     @Override
     public void getAllFavMeals(List<MealsTable> mealList) {
-        favouriteFragment.showAllFavMeals(mealList);
+        favouriteInterface.showAllFavMeals(mealList);
     }
 
     public void deleteMeal(MealsTable meal){

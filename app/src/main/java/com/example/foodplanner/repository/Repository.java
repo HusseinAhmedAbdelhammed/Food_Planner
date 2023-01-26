@@ -91,6 +91,7 @@ public class Repository {
             @Override
             public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<MealsTable> mealsTables) {
                 favouritePresenterInterface.getAllFavMeals(mealsTables);
+                Toast.makeText(con,mealsTables.get(0).getMealName(),Toast.LENGTH_LONG).show();
             }
 
             @Override

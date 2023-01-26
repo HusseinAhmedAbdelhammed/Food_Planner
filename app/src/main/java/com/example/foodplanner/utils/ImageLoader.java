@@ -63,7 +63,7 @@ public class ImageLoader {
         } catch (IOException e) {
             Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
         }
-        result=directory.getAbsolutePath()+Consts.DELIMITER_IMAGE_PATH+pName+"jpg";
+        result=directory.getAbsolutePath()+Consts.DELIMITER_IMAGE_PATH+pName+".jpg";
         return result;
     }
     public static void readImgFromRoom(String url,ImageView imageView){
@@ -74,14 +74,13 @@ public class ImageLoader {
             fis=new FileInputStream(file);
             Bitmap image= BitmapFactory.decodeStream(fis);
             imageView.setImageBitmap(image);
+            fis.close();
         } catch (FileNotFoundException e) {
             Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
-        }
-        try {
-            fis.close();
         } catch (IOException e) {
-            Log.i("SonicImageLoader", "readImgFromRoom: "+e.getMessage());
+            e.printStackTrace();
         }
+
 
     }
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchHomeFragment2"
             app:destination="@id/searchHomeFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchHomeFragment2"
@@ -31,5 +34,14 @@
         <argument
             android:name="request"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.foodplanner.view.fragment.FavouriteFragment"
+        android:label="fragment_favourit"
+        tools:layout="@layout/fragment_favourit" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_searchHomeFragment2"
+            app:destination="@id/searchHomeFragment2" />
     </fragment>
 </navigation>

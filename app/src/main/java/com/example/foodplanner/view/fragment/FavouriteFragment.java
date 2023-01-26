@@ -49,6 +49,7 @@ public class FavouriteFragment extends Fragment implements FavouriteInterface {
         favRecycler = view.findViewById(R.id.favRecyclerView);
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
+        favRecycler.setLayoutManager(manager);
         favouritePresenter = new FavouritePresenter(getContext(), this);
 //        adapter = new FavouriteAdapter(getContext(), );
     }
@@ -57,6 +58,8 @@ public class FavouriteFragment extends Fragment implements FavouriteInterface {
     @Override
     public void showAllFavMeals(List<MealsTable> mealList) {
         adapter = new FavouriteAdapter(getContext(),mealList);
+
+        favRecycler.setAdapter(adapter);
 
     }
 }

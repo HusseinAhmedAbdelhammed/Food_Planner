@@ -15,7 +15,7 @@ import com.example.foodplanner.utils.ImageLoader;
 import java.util.List;
 
 public class FavouriteAdapter  extends RecyclerView.Adapter<FavouriteViewHolder>{
-    Context context;
+   private final Context context;
     List<MealsTable> mealList;
 
     public FavouriteAdapter(Context context, List<MealsTable> mealList) {
@@ -27,7 +27,7 @@ public class FavouriteAdapter  extends RecyclerView.Adapter<FavouriteViewHolder>
     @Override
     public FavouriteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View view=inflater.inflate(R.layout.cat_layout,parent,false);
+        View view=inflater.inflate(R.layout.ingredient_layout,parent,false);
         FavouriteViewHolder viewHolder=new FavouriteViewHolder(view);
         return viewHolder;
     }
@@ -35,7 +35,7 @@ public class FavouriteAdapter  extends RecyclerView.Adapter<FavouriteViewHolder>
     @Override
     public void onBindViewHolder(@NonNull FavouriteViewHolder holder, int position) {
         holder.ingredientName.setText(mealList.get(position).getMealName());
-        ImageLoader.loadImage(context,mealList.get(position).getThum(),holder.ingredientThum);
+        ImageLoader.readImgFromRoom(mealList.get(position).getThum(),holder.ingredientThum);
     }
 
     @Override
