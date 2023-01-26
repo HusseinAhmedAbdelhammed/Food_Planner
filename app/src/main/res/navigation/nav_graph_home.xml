@@ -18,11 +18,7 @@
         android:id="@+id/searchHomeFragment2"
         android:name="com.example.foodplanner.view.fragment.SearchHomeFragment"
         android:label="fragment_search_home"
-        tools:layout="@layout/fragment_search_home" >
-        <action
-            android:id="@+id/action_searchHomeFragment2_to_searchFragment2"
-            app:destination="@id/searchFragment2" />
-    </fragment>
+        tools:layout="@layout/fragment_search_home" />
     <fragment
         android:id="@+id/searchFragment2"
         android:name="com.example.foodplanner.view.fragment.SearchFragment"

@@ -17,10 +17,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.pojo.Meals;
 import com.example.foodplanner.pojo.MealsList;
 import com.example.foodplanner.presenters.classes.SearchFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.SearchFragmentInterface;
 import com.example.foodplanner.view.adapters.SearchAdapter;
+
+import java.util.ArrayList;
 
 public class SearchFragment extends Fragment implements SearchFragmentInterface {
     EditText search;
@@ -40,6 +43,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
@@ -47,6 +51,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+//        presenter.getSearchResults(request,"dessert");
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -55,7 +60,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                presenter.getSearchResults(request,charSequence.toString());
+                presenter.getSearchResults(request, charSequence.toString());
             }
 
             @Override
@@ -63,23 +68,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
 
             }
         });
-//        switch (request){
-//            case "Ingredient":
-//                //code
-//                Log.i(TAG, "onViewCreated: "  +request);
-//                break;
-//            case "Area":
-//                //code
-//                break;
-//            case "Category":
-//                //code
-//                break;
-//            case "Name":
-//                //code
-//                break;
-//        }
     }
-
     private void init(View view) {
         search = view.findViewById(R.id.searchBar1);
         request = SearchFragmentArgs.fromBundle(getArguments()).getRequest();
@@ -92,7 +81,18 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
 
     @Override
     public void showResult(MealsList mealsList) {
+//        Log.i(TAG, "showResult: name" + ((mealsList.getMeals()).get(0)).getStrMeal());
+//        Log.i(TAG, "showResult: cat" + ((mealsList.getMeals()).get(0)).getStrCategory() );
         adapter=new SearchAdapter(getContext(),mealsList.getMeals());
         items.setAdapter(adapter);
+        Log.i(TAG, "showResult: size" + mealsList.getMeals());
+        if (mealsList != null) {
+            if (mealsList.getMeals() != null) {
+                Log.i(TAG, "test: instruction " + mealsList.getMeals().get(0).getStrInstructions());
+                Log.i(TAG, "test: name" + mealsList.getMeals().get(0).getStrMeal());
+                Log.i(TAG, "test: cat" + mealsList.getMeals().get(0).getStrCategory());
+            }
+        }
     }
+
 }

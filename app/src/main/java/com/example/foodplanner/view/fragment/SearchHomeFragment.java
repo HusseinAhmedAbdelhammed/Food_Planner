@@ -21,7 +21,7 @@ import com.example.foodplanner.utils.NavigatorClass;
 public class SearchHomeFragment extends Fragment {
     EditText search;
     Button ingredient, name, category, area;
-    SearchHomeFragmentDirections.ActionSearchHomeFragment2ToSearchFragment2 action;
+    SearchHomeFragmentDirections.ActionSearchHomeFragmentToSearchFragment action;
 
 
 
@@ -79,7 +79,7 @@ public class SearchHomeFragment extends Fragment {
         name = view.findViewById(R.id.searchName);
         area = view.findViewById(R.id.searchArea);
         category = view.findViewById(R.id.searchCategory);
-        action = SearchHomeFragmentDirections.actionSearchHomeFragment2ToSearchFragment2("");
+        action = SearchHomeFragmentDirections.actionSearchHomeFragmentToSearchFragment("");
 
     }
 }
