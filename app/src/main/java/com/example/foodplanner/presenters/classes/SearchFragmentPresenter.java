@@ -6,6 +6,7 @@ import com.example.foodplanner.network.apiclint.APIClient;
 import com.example.foodplanner.pojo.MealsList;
 import com.example.foodplanner.presenters.interfaces.SearchFragmentInterface;
 import com.example.foodplanner.utils.Consts;
+import com.example.foodplanner.view.adapters.SearchAdapter;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -16,6 +17,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchFragmentPresenter {
     SearchFragmentInterface searchFragmentInterface;
+    SearchAdapter searchAdapter;
+
+    public SearchFragmentPresenter(SearchAdapter searchAdapter) {
+        this.searchAdapter = searchAdapter;
+    }
+
     public SearchFragmentPresenter(SearchFragmentInterface searchFragmentInterface){
         this.searchFragmentInterface=searchFragmentInterface;
     }
@@ -45,8 +52,11 @@ public class SearchFragmentPresenter {
 
             @Override
             public void onSuccess(@NonNull MealsList mealsList) {
+                Log.i(Consts.TAG, "onSuccess: list" + mealsList);
+                if(mealsList.getMeals() != null) {
+                    Log.i(Consts.TAG, "onSuccess:cat  " + mealsList.getMeals().get(0).getStrCategory());
+                }
                 searchFragmentInterface.showResult(mealsList);
-                Log.i(Consts.TAG, "onSuccess: ");
             }
 
             @Override

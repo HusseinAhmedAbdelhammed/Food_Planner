@@ -1,5 +1,8 @@
 package com.example.foodplanner.utils;
 
+import android.content.Context;
+import android.view.View;
+
 import com.example.foodplanner.network.apiclint.APIClient;
 import com.example.foodplanner.pojo.Meals;
 import com.example.foodplanner.pojo.MealsList;
@@ -13,7 +16,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MealGetter {
     static Meals meal;
-    public static Meals getMeal(String MealName){
+
+    public static void getMeal(String MealName, View view, Context context){
 
         Single<MealsList>mealsListSingle= APIClient.getInstance().getMealByName(MealName).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -26,14 +30,14 @@ public class MealGetter {
             @Override
             public void onSuccess(@NonNull MealsList mealsList) {
                 meal=mealsList.getMeals().get(0);
+                MealSender.sendMeal(view,context, meal);
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
 
             }
-
         };
-        return meal;
+        mealsListSingle.subscribe(mealsListSingleObserver);
     }
 }
