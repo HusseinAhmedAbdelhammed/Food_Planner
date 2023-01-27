@@ -1,6 +1,7 @@
 package com.example.foodplanner.presenters.classes;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.presenters.interfaces.FavouriteInterface;
@@ -22,6 +23,7 @@ public class FavouritePresenter implements FavouritePresenterInterface {
 
     @Override
     public void getAllFavMeals(List<MealsTable> mealList) {
+        Toast.makeText(con, "favPresenter", Toast.LENGTH_SHORT).show();
         favouriteInterface.showAllFavMeals(mealList);
     }
 
@@ -30,6 +32,7 @@ public class FavouritePresenter implements FavouritePresenterInterface {
     }
 
     public void allFavMeals(){
+        Toast.makeText(con, "allFav", Toast.LENGTH_SHORT).show();
         Repository.getInstance(con, this).getFavorite();
     }
 }

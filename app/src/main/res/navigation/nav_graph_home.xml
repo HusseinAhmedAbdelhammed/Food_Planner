@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_favouriteFragment"
             app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_catFragment2"
+            app:destination="@id/catFragment2" />
     </fragment>
     <fragment
         android:id="@+id/searchHomeFragment2"
@@ -43,5 +46,13 @@
         <action
             android:id="@+id/action_favouriteFragment_to_searchHomeFragment2"
             app:destination="@id/searchHomeFragment2" />
+        <action
+            android:id="@+id/action_favouriteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/catFragment2"
+        android:name="com.example.foodplanner.view.fragment.CatFragment"
+        android:label="fragment_cat"
+        tools:layout="@layout/fragment_cat" />
 </navigation>
