@@ -24,6 +24,10 @@ public class FavouritePresenter implements FavouritePresenterInterface {
         FavouritePresenter.list = list;
     }
 
+    public FavouritePresenter(Context con) {
+        this.con = con;
+    }
+
     public FavouritePresenter(Context context, FavouriteInterface favouriteInterface) {
         this.favouriteInterface = favouriteInterface;
         this.con = context;

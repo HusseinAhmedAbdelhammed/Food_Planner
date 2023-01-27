@@ -60,10 +60,10 @@ public class FavouriteFragment extends Fragment implements FavouriteInterface {
 
     private void init(View view) {
         favRecycler = view.findViewById(R.id.favRecyclerView);
-//        LinearLayoutManager manager=new LinearLayoutManager(getContext());
-//        manager.setOrientation(RecyclerView.VERTICAL);
-//        favRecycler.setLayoutManager(manager);
-        favRecycler.setLayoutManager(new GridLayoutManager(context, 2));
+        LinearLayoutManager manager=new LinearLayoutManager(getContext());
+        manager.setOrientation(RecyclerView.VERTICAL);
+        favRecycler.setLayoutManager(manager);
+//        favRecycler.setLayoutManager(new GridLayoutManager(context, 2));
 
         favouritePresenter = new FavouritePresenter(getContext(), this);
     }
