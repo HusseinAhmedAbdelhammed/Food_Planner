@@ -8,7 +8,6 @@ public class MealsList {
     public ArrayList<Meals> getMeals() {
         return meals;
     }
-
     public void setMeals(ArrayList<Meals> meals) {
         this.meals = meals;
     }
