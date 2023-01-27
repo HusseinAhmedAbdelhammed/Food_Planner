@@ -1,10 +1,12 @@
 package com.example.foodplanner.view.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +18,12 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.pojo.Meals;
 import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.presenters.classes.MealDetailsPresenter;
+import com.example.foodplanner.utils.Alerts;
+import com.example.foodplanner.utils.Consts;
+import com.example.foodplanner.utils.DataSaver;
 import com.example.foodplanner.utils.ImageLoader;
 import com.example.foodplanner.utils.MealSender;
+import com.example.foodplanner.utils.NavigatorClass;
 import com.example.foodplanner.utils.RecipeMaker;
 import com.example.foodplanner.view.adapters.MealDetailsIngredientAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -61,11 +67,26 @@ public class MealDetailsActivity extends AppCompatActivity {
         addToFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mealsTable = new MealsTable(passedMeal.getIdMeal(),passedMeal.getStrMeal(),
-                        RecipeMaker.makeRecipe(getAllIngredientList(passedMeal)),passedMeal.getStrInstructions(),
-                        ImageLoader.saveImageToRoom(mealThum, MealDetailsActivity.this, passedMeal.getStrMeal())
-                        ,passedMeal.getStrYoutube());
-                mealDetailsPresenter.insertMeal(mealsTable);
+                if(DataSaver.getGuest().equals(Consts.GUEST)){
+                    String message = "Sorry you can only view the meal to Add it to favourite please login";
+                    Alerts.setAlert(view, MealDetailsActivity.this, message);
+                }else{
+                    mealsTable = new MealsTable(passedMeal.getIdMeal(),passedMeal.getStrMeal(),
+                            RecipeMaker.makeRecipe(getAllIngredientList(passedMeal)),passedMeal.getStrInstructions(),
+                            ImageLoader.saveImageToRoom(mealThum, MealDetailsActivity.this, passedMeal.getStrMeal())
+                            ,passedMeal.getStrYoutube());
+                    mealDetailsPresenter.insertMeal(mealsTable);
+                }
+
+            }
+        });
+        addToPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(DataSaver.getGuest().equals(Consts.GUEST)){
+                    String message = "Sorry you can only view the meal to Add it to plan please login";
+                    Alerts.setAlert(view, MealDetailsActivity.this, message);
+                }else{}
             }
         });
     }
@@ -134,6 +155,9 @@ public class MealDetailsActivity extends AppCompatActivity {
              list.add(meal.getStrIngredient20());
         return list;
     }
+
+
+
 
 
 }

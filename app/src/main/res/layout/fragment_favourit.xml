@@ -15,15 +15,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FavouriteMeal"
-            android:textStyle="bold"
-            android:textSize="25dp"
             android:textColor="#000"
-            />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favRecyclerView"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="272dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/guestTV"
+            android:layout_width="329dp"
+            android:layout_height="111dp"
+            android:text="@string/guest"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:textSize="25dp" />
+        <TextView
+            android:id="@+id/guestLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:visibility="gone"
+            android:textSize="25dp" />
     </LinearLayout>
 </FrameLayout>

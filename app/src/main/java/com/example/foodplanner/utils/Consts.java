@@ -14,5 +14,5 @@ public class Consts {
     public static final String CAT_TARGET="Category";
     public static final String AREA_TARGET="Area";
     public static final String ING_TARGET="Ingredient";
-
+    public static final String GUEST = "Guest";
 }
