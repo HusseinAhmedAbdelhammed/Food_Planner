@@ -43,11 +43,12 @@ public class FavouritePresenter implements FavouritePresenterInterface {
     }
 
     public void deleteMeal(MealsTable meal){
-        Repository.getInstance(con, this).deleteFavorite(meal);
+        Repository.getInstance(con).deleteFavorite(meal);
     }
 
     public void allFavMeals(){
-        Toast.makeText(con, "allFav", Toast.LENGTH_SHORT).show();
-        Repository.getInstance(con, this).getFavorite();
+
+        Repository.getInstance(con).getFavorite(this);
+
     }
 }

@@ -89,6 +89,12 @@ public class MealDetailsActivity extends AppCompatActivity {
                 }else{}
             }
         });
+        addToPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavigatorClass.navigateToPlan(MealDetailsActivity.this,passedMeal.getStrMeal(),mealThum);
+            }
+        });
     }
 
     private void declare() {

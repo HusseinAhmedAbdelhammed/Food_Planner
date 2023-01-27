@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+
 import android.window.SplashScreen;
+
+import android.widget.ImageView;
+
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -12,8 +16,12 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.view.activities.HomeActivity;
+
 import com.example.foodplanner.view.activities.MainActivity;
 import com.example.foodplanner.view.fragment.SplashFragment;
+
+import com.example.foodplanner.view.activities.PlanActivity;
+
 
 public class NavigatorClass {
     static Intent intent;
@@ -39,5 +47,13 @@ public class NavigatorClass {
                 break;
         }
 
+
+    }
+    public static void navigateToPlan(Context context, String extra, ImageView imageView){
+        String localUrl=ImageLoader.saveImageToRoom(imageView,context,extra);
+        intent=new Intent(context, PlanActivity.class);
+        intent.putExtra("mealName",extra);
+        intent.putExtra("mealThum",localUrl);
+        context.startActivity(intent);
     }
 }

@@ -15,5 +15,9 @@
         android:id="@+id/favouriteFragment"
         android:icon="@android:drawable/star_off"
         android:title="Favorite"/>
+    <item
+        android:id="@+id/planFragment"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Plan"/>
 
 </menu>

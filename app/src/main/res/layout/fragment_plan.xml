@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.PlanFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/satRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sunday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sunRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/monRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tusRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wednesday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wedRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/thuRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday"
+                android:textSize="34sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/friRec"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="96sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

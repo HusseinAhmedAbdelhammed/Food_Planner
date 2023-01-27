@@ -5,15 +5,19 @@
       <map>
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/activity_plan.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/activity_test.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/cat_layout.xml" value="0.25" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/fragment_cat.xml" value="0.17074275362318841" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/fragment_home.xml" value="0.18" />
+        <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/fragment_plan.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/fragment_search.xml" value="0.18704710144927536" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/ingredient_layout.xml" value="0.1" />
+        <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/plan_layout.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/random_layout.xml" value="0.18704710144927536" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/search_layout.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/layout/seartch_layout.xml" value="0.22" />
+        <entry key="..\:/Users/sonic/Desktop/Food_Planner/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
