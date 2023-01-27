@@ -34,7 +34,6 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
         check = false;
         Log.i(TAG, "CategoryFragmentAdapter:  fav");
     }
-
     @NonNull
     @Override
     public CategoryDetailsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,7 +43,6 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
         CategoryDetailsViewHolder viewHolder=new CategoryDetailsViewHolder(view);
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(@NonNull CategoryDetailsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.favName.setText(mealList.get(position).getStrMeal());

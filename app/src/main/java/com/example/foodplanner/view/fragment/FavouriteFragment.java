@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,8 @@ public class FavouriteFragment extends Fragment implements FavouriteInterface {
     FavouritePresenter favouritePresenter;
     Context context;
     FavouriteAdapter adapter;
-    List<MealsTable> mealList = new ArrayList<>();
+    List<MealsTable> mealList ;
+    private static final String TAG = "FavouriteFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,9 +47,13 @@ public class FavouriteFragment extends Fragment implements FavouriteInterface {
         super.onViewCreated(view, savedInstanceState);
         init(view);
         favouritePresenter.allFavMeals();
-        adapter = new FavouriteAdapter(context,mealList);
-        Toast.makeText(context, "count " + adapter.getItemCount(), Toast.LENGTH_SHORT).show();
-        favRecycler.setAdapter(adapter);
+        mealList = FavouritePresenter.list;
+        Log.i(TAG, "onViewCreated: " + mealList + FavouritePresenter.list);
+        if(mealList!=null){
+            Log.i(TAG, "onViewCreated: notNull");
+            adapter = new FavouriteAdapter(context, mealList);
+            favRecycler.setAdapter(adapter);
+        }
     }
 
 
@@ -65,9 +71,9 @@ public class FavouriteFragment extends Fragment implements FavouriteInterface {
 
     @Override
     public void showAllFavMeals(List<MealsTable> mealList) {
-        this.mealList.clear();
-        this.mealList.addAll(mealList);
-        adapter.notifyDataSetChanged();
+        Log.i(TAG, "showAllFavMeals: " + mealList);
+        adapter = new FavouriteAdapter(context, mealList);
+        favRecycler.setAdapter(adapter);
     }
 
     @Override
