@@ -39,14 +39,15 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
     public CategoryDetailsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.i(TAG, "onCreateViewHolder: ");
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View view=inflater.inflate(R.layout.fav_layout,parent,false);
+        View view=inflater.inflate(R.layout.cat_details,parent,false);
         CategoryDetailsViewHolder viewHolder=new CategoryDetailsViewHolder(view);
         return viewHolder;
     }
     @Override
     public void onBindViewHolder(@NonNull CategoryDetailsViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.favName.setText(mealList.get(position).getStrMeal());
-        ImageLoader.loadImage(con,mealList.get(position).getStrMealThumb(),holder.favImg);
+        Log.i(TAG, "onBindViewHolder: " + mealList);
+        holder.catName.setText(mealList.get(position).getStrMeal());
+        ImageLoader.loadImage(con,mealList.get(position).getStrMealThumb(),holder.catImg);
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

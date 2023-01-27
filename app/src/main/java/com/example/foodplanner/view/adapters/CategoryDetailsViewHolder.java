@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.R;
 
 public class CategoryDetailsViewHolder extends RecyclerView.ViewHolder {
-    public TextView favName;
-    public ImageView favImg;
+    public TextView catName;
+    public ImageView catImg;
     public ConstraintLayout constraintLayout;
     public View layout;
     public CategoryDetailsViewHolder(@NonNull View itemView) {
         super(itemView);
         layout=itemView;
-        favName=itemView.findViewById(R.id.favName);
-        favImg=itemView.findViewById(R.id.favThum);
+        catName=itemView.findViewById(R.id.catDeName);
+        catImg=itemView.findViewById(R.id.carDeThum);
         constraintLayout=itemView.findViewById(R.id.constLayout);
     }
 }

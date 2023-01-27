@@ -6,7 +6,7 @@
     app:cardCornerRadius="50dp"
     android:layout_marginLeft="20dp"
     android:backgroundTint="@color/darkBlue"
-    android:layout_height="300dp">
+    android:layout_height="250dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constLayout"
@@ -15,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_height="190dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +45,9 @@
         android:layout_width="176dp"
         android:layout_height="77dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:text="TextView"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="25dp" />
 
