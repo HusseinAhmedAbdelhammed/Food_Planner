@@ -2,29 +2,24 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
+    android:layout_width="350dp"
     app:cardCornerRadius="50dp"
-    android:layout_marginLeft="48dp"
+    android:layout_margin="20dp"
     android:backgroundTint="@color/darkBlue"
-    android:layout_marginTop="20dp"
-    android:layout_height="300dp">
+    android:layout_height="200dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searConst"
+    <FrameLayout
+        android:id="@+id/constLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="320dp"
+            android:layout_width="200dp"
             android:layout_height="200dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:cardCornerRadius="50dp"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardCornerRadius="50dp">
 
             <ImageView
-                android:id="@+id/searImg"
+                android:id="@+id/favThum"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -38,19 +33,28 @@
         </androidx.cardview.widget.CardView>
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/searMeal"
-        android:layout_width="245dp"
-        android:layout_height="69dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
+        android:id="@+id/favName"
+        android:layout_width="130dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/removeFromFav"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/blue"
+        android:text="Remove"
+        app:cornerRadius="50dp" />
 
 
 </androidx.cardview.widget.CardView>

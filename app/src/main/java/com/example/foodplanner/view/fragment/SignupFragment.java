@@ -18,6 +18,8 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.classes.SignUpFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.SignUpFragmentInterface;
+import com.example.foodplanner.utils.Consts;
+import com.example.foodplanner.utils.DataSaver;
 import com.example.foodplanner.utils.NavigatorClass;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,6 +70,13 @@ public class SignupFragment extends Fragment implements SignUpFragmentInterface 
             public void onClick(View view) {
                 startActivityForResult(fireBase.getClient().getSignInIntent(), 100);
 
+            }
+        });
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DataSaver.setGuest(Consts.GUEST);
+                NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
             }
         });
     }

@@ -17,6 +17,7 @@ import com.example.foodplanner.presenters.interfaces.FavouritePresenterInterface
 import com.example.foodplanner.presenters.interfaces.PlanDisplayPresenterInterface;
 import com.example.foodplanner.utils.Consts;
 import com.example.foodplanner.utils.FireStoreData;
+import com.example.foodplanner.view.adapters.CategoryFragmentAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -151,8 +152,10 @@ public class Repository {
     }
     //Single<List<MealsTable>>
 
+
     public void getFavorite(FavouritePresenterInterface favouritePresenterInterface2) {
         Single<List<MealsTable>> favouriteList = mealDAO.getAllMeals().subscribeOn(Schedulers.io())
+
                 .observeOn(AndroidSchedulers.mainThread());
         SingleObserver<List<MealsTable>> favouriteObserver = new SingleObserver<List<MealsTable>>() {
             @Override
@@ -163,8 +166,10 @@ public class Repository {
             @Override
             public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<MealsTable> mealsTables) {
 
+
                 favouritePresenterInterface2.getAllFavMeals(mealsTables);
                 Toast.makeText(con,mealsTables.get(0).getMealName(),Toast.LENGTH_LONG).show();
+
             }
 
             @Override

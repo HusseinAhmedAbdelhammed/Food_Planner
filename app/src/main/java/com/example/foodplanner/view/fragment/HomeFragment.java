@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.pojo.CategoriesList;
@@ -95,6 +96,7 @@ TestFragmentPresenter testFragmentPresenter;
     @Override
 
     public void showCats(CategoriesList categoriesList) {
+        Toast.makeText(getContext(), "cat", Toast.LENGTH_SHORT).show();
         catAdapter = new CategoryFragmentAdapter(getContext(), categoriesList.getCategories());
         catHome.setAdapter(catAdapter);
 

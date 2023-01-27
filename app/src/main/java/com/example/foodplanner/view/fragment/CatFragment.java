@@ -1,10 +1,12 @@
 package com.example.foodplanner.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,27 +16,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodplanner.R;
-import com.example.foodplanner.pojo.CategoriesList;
-import com.example.foodplanner.presenters.classes.TestFragmentPresenter;
-import com.example.foodplanner.presenters.interfaces.TestFragmentInterface;
-import com.example.foodplanner.view.adapters.CategoryFragmentAdapter;
+import com.example.foodplanner.pojo.Meals;
+import com.example.foodplanner.presenters.classes.CategoryDetailsPresenter;
+import com.example.foodplanner.view.adapters.CategoryDetailsAdapter;
+import java.util.ArrayList;
 
 
 public class
-CatFragment extends Fragment implements TestFragmentInterface {
+CatFragment extends Fragment{
 RecyclerView rec;
-TestFragmentPresenter presenter;
-CategoryFragmentAdapter adapter;
+CategoryDetailsAdapter adapter;
+ArrayList<Meals> meals;
+
+    private static final String TAG = "CatFragment";
 
     public CatFragment() {
         // Required empty public constructor
     }
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         Log.i("SONIC", "onCreate: ");
 
@@ -51,20 +53,14 @@ CategoryFragmentAdapter adapter;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        Log.i("SONIC"," e.getMessage()");
-        presenter.getCateg();
-        LinearLayoutManager manager=new LinearLayoutManager(getContext());
-        manager.setOrientation(RecyclerView.VERTICAL);
-        rec.setLayoutManager(manager);
     }
 
-    @Override
-    public void showCategories(CategoriesList categoriesList) {
-        adapter=new CategoryFragmentAdapter(getContext(),categoriesList.getCategories());
+    public void init(View view){
+        rec = view.findViewById(R.id.catDetailsRecycler);
+        rec.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        meals = CategoryDetailsPresenter.list;
+        adapter = new CategoryDetailsAdapter(getContext(), meals);
         rec.setAdapter(adapter);
     }
-    public void init(View view){
-        rec=view.findViewById(R.id.recHome);
-        presenter=new TestFragmentPresenter(this);
-    }
+
 }
