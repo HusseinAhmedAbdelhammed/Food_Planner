@@ -18,6 +18,7 @@ import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.presenters.classes.MealDetailsPresenter;
 import com.example.foodplanner.utils.ImageLoader;
 import com.example.foodplanner.utils.MealSender;
+import com.example.foodplanner.utils.NavigatorClass;
 import com.example.foodplanner.utils.RecipeMaker;
 import com.example.foodplanner.view.adapters.MealDetailsIngredientAdapter;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -66,6 +67,12 @@ public class MealDetailsActivity extends AppCompatActivity {
                         ImageLoader.saveImageToRoom(mealThum, MealDetailsActivity.this, passedMeal.getStrMeal())
                         ,passedMeal.getStrYoutube());
                 mealDetailsPresenter.insertMeal(mealsTable);
+            }
+        });
+        addToPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavigatorClass.navigateToPlan(MealDetailsActivity.this,passedMeal.getStrMeal(),mealThum);
             }
         });
     }

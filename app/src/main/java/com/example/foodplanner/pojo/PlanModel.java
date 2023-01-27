@@ -9,78 +9,40 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "plans")
 public class PlanModel {
     @PrimaryKey
-    @ColumnInfo(name = "planId")
+    @ColumnInfo(name = "planID")
     @NonNull
-    private long planId;
-    @ColumnInfo(name = "breakfastMeal")
-    private String breakfastMeal;
-    @ColumnInfo(name = "dinnerMeal")
-    private String dinnerMeal;
-    @ColumnInfo(name = "lunchMeal")
-    private String lunchMeal;
-    @ColumnInfo(name="breakfastThum")
-    private String breakfastThum;
-    @ColumnInfo(name="dinnerThum")
-    private String dinnerThum;
-    @ColumnInfo(name="lunchThum")
-    private String lunchThum;
+    private long planID;
+    @ColumnInfo(name = "mealName")
+    private String mealName;
+    @ColumnInfo(name="mealThum")
+    private String mealThum;
     @ColumnInfo(name = "day")
     private String day;
+    @ColumnInfo(name = "type")
+    private String type;
 
-    public long getPlanId() {
-        return planId;
+    public long getPlanID() {
+        return planID;
     }
 
-    public void setPlanId(long planId) {
-        this.planId = planId;
+    public void setPlanID(long planID) {
+        this.planID = planID;
     }
 
-    public String getBreakfastMeal() {
-        return breakfastMeal;
+    public String getMealName() {
+        return mealName;
     }
 
-    public void setBreakfastMeal(String breakfastMeal) {
-        this.breakfastMeal = breakfastMeal;
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
     }
 
-    public String getDinnerMeal() {
-        return dinnerMeal;
+    public String getMealThum() {
+        return mealThum;
     }
 
-    public void setDinnerMeal(String dinnerMeal) {
-        this.dinnerMeal = dinnerMeal;
-    }
-
-    public String getLunchMeal() {
-        return lunchMeal;
-    }
-
-    public void setLunchMeal(String lunchMeal) {
-        this.lunchMeal = lunchMeal;
-    }
-
-    public String getBreakfastThum() {
-        return breakfastThum;
-    }
-
-    public void setBreakfastThum(String breakfastThum) {
-        this.breakfastThum = breakfastThum;
-    }
-
-    public String getDinnerThum() {
-        return dinnerThum;
-    }
-
-    public void setDinnerThum(String dinnerThum) {
-        this.dinnerThum = dinnerThum;
-    }
-
-    public String getLunchThum() {
-        return lunchThum;
-    }
-
-    public void setLunchThum(String lunchThum) {
-        this.lunchThum = lunchThum;
+    public void setMealThum(String mealThum) {
+        this.mealThum = mealThum;
     }
 
     public String getDay() {
@@ -89,5 +51,13 @@ public class PlanModel {
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

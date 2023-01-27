@@ -3,10 +3,12 @@ package com.example.foodplanner.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.navigation.Navigation;
 
 import com.example.foodplanner.view.activities.HomeActivity;
+import com.example.foodplanner.view.activities.PlanActivity;
 
 public class NavigatorClass {
     static Intent intent;
@@ -24,5 +26,13 @@ public class NavigatorClass {
 
         }
 
+
+    }
+    public static void navigateToPlan(Context context, String extra, ImageView imageView){
+        String localUrl=ImageLoader.saveImageToRoom(imageView,context,extra);
+        intent=new Intent(context, PlanActivity.class);
+        intent.putExtra("mealName",extra);
+        intent.putExtra("mealThum",localUrl);
+        context.startActivity(intent);
     }
 }

@@ -12,7 +12,9 @@ import com.example.foodplanner.database.plan.PlanDAO;
 import com.example.foodplanner.network.firebase.FireStore;
 import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.pojo.PlanModel;
+import com.example.foodplanner.presenters.interfaces.FavouriteInterface;
 import com.example.foodplanner.presenters.interfaces.FavouritePresenterInterface;
+import com.example.foodplanner.presenters.interfaces.PlanDisplayPresenterInterface;
 import com.example.foodplanner.utils.Consts;
 import com.example.foodplanner.utils.FireStoreData;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,7 +40,7 @@ public class Repository {
     private PlanDAO planDAO;
     private MealDAO mealDAO;
     private FireStore fireStoredb;
-    private FavouritePresenterInterface favouritePresenterInterface;
+
     private Repository(Context con){
         this.con=con;
         dataBaseInstance=RoomInstance.getInstance(con);
@@ -46,13 +48,7 @@ public class Repository {
         mealDAO= dataBaseInstance.mealDAO();
     }
 
-    public Repository(Context con, FavouritePresenterInterface favouritePresenterInterface) {
-        this.con = con;
-        this.favouritePresenterInterface = favouritePresenterInterface;
-        dataBaseInstance=RoomInstance.getInstance(con);
-        planDAO= dataBaseInstance.planDAO();
-        mealDAO= dataBaseInstance.mealDAO();
-    }
+
 
     public static Repository getInstance(Context con){
         if(instance==null){
@@ -61,25 +57,101 @@ public class Repository {
         return instance;
     }
 
-    public static Repository getInstance(Context con,
-                                         FavouritePresenterInterface favouritePresenterInterface){
-        if(instance==null){
-            instance=new Repository(con, favouritePresenterInterface);
-        }
-        return instance;
+    public void getPlanByDay(String day, PlanDisplayPresenterInterface presenterInterface){
+        Single<List<PlanModel>> planByDay=planDAO.getPlan(day)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        SingleObserver<List<PlanModel>> planByDayObserver=new SingleObserver<List<PlanModel>>() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<PlanModel> planModelList) {
+//                if(planModelList.get(0).getDay()==null){
+//                    Toast.makeText(con,"jjjj",Toast.LENGTH_LONG).show();
+//
+//                }
+                presenterInterface.getData(planModelList);
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                Toast.makeText(con,"planModelList.get(0).getMealName()",Toast.LENGTH_LONG).show();
+            }
+        };
+        planByDay.subscribe(planByDayObserver);
     }
-    public Single<List<PlanModel>> getPlans(){
-        return planDAO.getAllPlans();
+    public void getPlans( PlanDisplayPresenterInterface presenterInterface){
+        Single<List<PlanModel>>getPlans=planDAO.getAllPlans()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        SingleObserver<List<PlanModel>> plansObserver=new SingleObserver<List<PlanModel>>() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<PlanModel> planModels) {
+                presenterInterface.getData(planModels);
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        getPlans.subscribe(plansObserver);
     }
-    public Completable insertPlan(PlanModel planModel){
-        return planDAO.insertMeal(planModel);
+    public void insertPlan(PlanModel planModel){
+        Completable insertPlanObservable=planDAO.insertMeal(planModel)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        CompletableObserver insertObserver=new CompletableObserver() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Toast.makeText(con,"plan inserted",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        insertPlanObservable.subscribe(insertObserver);
     }
-    public Completable deletePlan(PlanModel planModel){
-        return planDAO.deleteMeal(planModel);
+    public void deletePlan(PlanModel planModel){
+        Completable deletePlan= planDAO.deleteMeal(planModel)
+                .subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread());
+        CompletableObserver deleteObserver=new CompletableObserver() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Toast.makeText(con,"plan deleted",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        deletePlan.subscribe(deleteObserver);
     }
     //Single<List<MealsTable>>
 
-    public void getFavorite() {
+    public void getFavorite(FavouritePresenterInterface favouritePresenterInterface2) {
         Single<List<MealsTable>> favouriteList = mealDAO.getAllMeals().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         SingleObserver<List<MealsTable>> favouriteObserver = new SingleObserver<List<MealsTable>>() {
@@ -90,7 +162,8 @@ public class Repository {
 
             @Override
             public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<MealsTable> mealsTables) {
-                favouritePresenterInterface.getAllFavMeals(mealsTables);
+
+                favouritePresenterInterface2.getAllFavMeals(mealsTables);
                 Toast.makeText(con,mealsTables.get(0).getMealName(),Toast.LENGTH_LONG).show();
             }
 
