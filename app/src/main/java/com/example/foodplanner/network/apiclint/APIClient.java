@@ -34,4 +34,6 @@ public class APIClient {
     public Single<MealsList>getMealByCategory(String category){return apiClientInterface.getMealByCategory(category);}
     public Single<MealsList>getMealByIngred(String ingred){return apiClientInterface.getMealByIngred(ingred);}
     public Single<CategoriesList> getCategories(){return apiClientInterface.getCategories();}
+    public Single<MealsList>getCountries(String list){return apiClientInterface.getCountryList(list);}
+
 }
