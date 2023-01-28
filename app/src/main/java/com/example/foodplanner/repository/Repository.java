@@ -12,6 +12,7 @@ import com.example.foodplanner.database.plan.PlanDAO;
 import com.example.foodplanner.network.firebase.FireStore;
 import com.example.foodplanner.pojo.MealsTable;
 import com.example.foodplanner.pojo.PlanModel;
+import com.example.foodplanner.presenters.interfaces.FavCompresserInterface;
 import com.example.foodplanner.presenters.interfaces.FavouriteInterface;
 import com.example.foodplanner.presenters.interfaces.FavouritePresenterInterface;
 import com.example.foodplanner.presenters.interfaces.PlanDisplayPresenterInterface;
@@ -20,6 +21,7 @@ import com.example.foodplanner.utils.FireStoreData;
 import com.example.foodplanner.view.adapters.CategoryFragmentAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -152,7 +154,28 @@ public class Repository {
     }
     //Single<List<MealsTable>>
 
+    public void getPlansMap(FavCompresserInterface favCompresserInterface){
+        Single<List<PlanModel>>getPlans=planDAO.getAllPlans()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        SingleObserver<List<PlanModel>> plansObserver=new SingleObserver<List<PlanModel>>() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
+            }
+
+            @Override
+            public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<PlanModel> planModels) {
+                favCompresserInterface.insertPlansMap(planModels);
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        getPlans.subscribe(plansObserver);
+    }
     public void getFavorite(FavouritePresenterInterface favouritePresenterInterface2) {
         Single<List<MealsTable>> favouriteList = mealDAO.getAllMeals().subscribeOn(Schedulers.io())
 
@@ -169,6 +192,30 @@ public class Repository {
 
                 favouritePresenterInterface2.getAllFavMeals(mealsTables);
                 Toast.makeText(con,mealsTables.get(0).getMealName(),Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+            }
+        };
+        favouriteList.subscribe(favouriteObserver);
+    }
+    public void getFavoriteMap(FavCompresserInterface favCompresserInterface) {
+        Single<List<MealsTable>> favouriteList = mealDAO.getAllMeals().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+        SingleObserver<List<MealsTable>> favouriteObserver = new SingleObserver<List<MealsTable>>() {
+            @Override
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<MealsTable> mealsTables) {
+
+
+                favCompresserInterface.insertMealsMap(mealsTables);
 
             }
 
@@ -225,24 +272,63 @@ public class Repository {
     }
 
 
-    public void backup(ArrayList<Integer> favIDs,ArrayList<String> plans){
+    public void backup(ArrayList<Map<String,Object>>mealsBackup){
         fireStoredb=FireStore.getInstance();
-        Map<String,Object> data=new HashMap<>();
-        data.put("favIDs",favIDs);
-        data.put("plans",plans);
+        Map<String,Object> fav=new HashMap<>();
+
+        Map<String,Object>data=new HashMap<>();
+        for(int i=0;i<mealsBackup.size();i++){
+            fav.put("meal"+i,mealsBackup.get(i));
+        }
+
+
+        data.put("fav",fav);
+
         fireStoredb.getDb().collection(Consts.COLLECTION)
-                .document(FireStoreData.getMail())
+                .document("sonic1")
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.i(Consts.TAG, "onSuccess: ");
+                        Toast.makeText(con, "done", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.i(Consts.TAG, "onFailure: "+e.getMessage());
+                        Toast.makeText(con, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+    public void backupPlan(ArrayList<Map<String,Object>> plansList){
+        fireStoredb=FireStore.getInstance();
+        Map<String,Object> plan=new HashMap<>();
+
+        Map<String,Object>data=new HashMap<>();
+        for(int i=0;i<plansList.size();i++){
+            plan.put("plan"+i,plansList.get(i));
+        }
+
+
+        data.put("plan",plan);
+
+        fireStoredb.getDb().collection(Consts.COLLECTION)
+                .document("sonic1")
+                .set(data, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i(Consts.TAG, "onSuccess: ");
+                        Toast.makeText(con, "donePlan", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(Consts.TAG, "onFailure: "+e.getMessage());
+                        Toast.makeText(con, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

@@ -83,6 +83,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
         SharedPrefrencesClass.setIsLogedIn(true);
         Toast.makeText(getContext(), "login Successfully",
                 Toast.LENGTH_SHORT).show();
+
         NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
 
     }
