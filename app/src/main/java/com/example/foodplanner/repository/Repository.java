@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.foodplanner.database.SharedPrefrencesClass;
 import com.example.foodplanner.database.favorite.MealDAO;
 import com.example.foodplanner.database.instance.RoomInstance;
 import com.example.foodplanner.database.plan.PlanDAO;
@@ -17,10 +18,15 @@ import com.example.foodplanner.presenters.interfaces.FavouriteInterface;
 import com.example.foodplanner.presenters.interfaces.FavouritePresenterInterface;
 import com.example.foodplanner.presenters.interfaces.PlanDisplayPresenterInterface;
 import com.example.foodplanner.utils.Consts;
+import com.example.foodplanner.utils.DataGetter;
 import com.example.foodplanner.utils.FireStoreData;
 import com.example.foodplanner.view.adapters.CategoryFragmentAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
@@ -285,7 +291,7 @@ public class Repository {
         data.put("fav",fav);
 
         fireStoredb.getDb().collection(Consts.COLLECTION)
-                .document("sonic1")
+                .document(SharedPrefrencesClass.getSharedPrefEmail())
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -315,7 +321,7 @@ public class Repository {
         data.put("plan",plan);
 
         fireStoredb.getDb().collection(Consts.COLLECTION)
-                .document("sonic1")
+                .document(SharedPrefrencesClass.getSharedPrefEmail())
                 .set(data, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -331,6 +337,29 @@ public class Repository {
                         Toast.makeText(con, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+    public void getDataFromFireStore(){
+
+        fireStoredb=FireStore.getInstance();
+        DocumentReference dataRef=fireStoredb.getDb().collection(Consts.COLLECTION)
+                .document(SharedPrefrencesClass.getSharedPrefEmail());
+        dataRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document= task.getResult();
+                    Map<String,Object>map=new HashMap<>();
+                    Map<String,Object>planMap=new HashMap<>();
+                    planMap= (Map<String, Object>) document.get("plan");
+                    map= (Map<String, Object>) document.getData().get("fav");//send it
+
+                    DataGetter.getFav(con,map);
+                    DataGetter.getPlan(con,planMap);
+
+                }
+            }
+        });
+
     }
 
 }

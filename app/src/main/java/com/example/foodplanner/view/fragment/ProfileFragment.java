@@ -49,6 +49,7 @@ ProfilePresenter presenter;
             @Override
             public void onClick(View view) {
                 presenter.saveFav();
+
             }
         });
     }

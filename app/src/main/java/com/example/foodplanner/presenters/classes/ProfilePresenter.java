@@ -14,5 +14,6 @@ public class ProfilePresenter {
         compresser=new FavCompresser(context);
         compresser.favBackup();
         compresser.planBackup();
+        compresser.dataTest();
     }
 }

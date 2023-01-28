@@ -29,7 +29,9 @@ public class FavCompresser implements FavCompresserInterface {
     public void planBackup(){
         Repository.getInstance(context).getPlansMap(this);
     }
-
+    public void dataTest(){
+        Repository.getInstance(context).getDataFromFireStore();
+    }
 
     @Override
     public void insertMealsMap(List<MealsTable> mealsTableList) {
