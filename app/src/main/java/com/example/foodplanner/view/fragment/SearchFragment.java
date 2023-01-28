@@ -1,5 +1,7 @@
 package com.example.foodplanner.view.fragment;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,8 @@ import com.example.foodplanner.pojo.Meals;
 import com.example.foodplanner.pojo.MealsList;
 import com.example.foodplanner.presenters.classes.SearchFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.SearchFragmentInterface;
+import com.example.foodplanner.utils.DataSaver;
+import com.example.foodplanner.utils.InternetConnectionChangeListener;
 import com.example.foodplanner.view.adapters.SearchAdapter;
 
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
     private static final String TAG = "SearchFragment";
     SearchFragmentPresenter presenter;
     SearchAdapter adapter;
+    InternetConnectionChangeListener internetConnectionChangeListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
         manager.setOrientation(RecyclerView.VERTICAL);
         items.setLayoutManager(manager);
         presenter=new SearchFragmentPresenter(this);
+        internetConnectionChangeListener = new InternetConnectionChangeListener();
     }
 
     @Override
@@ -93,6 +99,20 @@ public class SearchFragment extends Fragment implements SearchFragmentInterface 
                 Log.i(TAG, "test: cat" + mealsList.getMeals().get(0).getStrCategory());
             }
         }
+    }
+
+    @Override
+    public void onStart() {
+        DataSaver.setView(getView());
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        requireActivity().registerReceiver(internetConnectionChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        requireActivity().unregisterReceiver(internetConnectionChangeListener);
+        super.onStop();
     }
 
 }

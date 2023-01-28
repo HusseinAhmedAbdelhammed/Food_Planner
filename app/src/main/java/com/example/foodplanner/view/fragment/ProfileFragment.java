@@ -1,5 +1,7 @@
 package com.example.foodplanner.view.fragment;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +15,13 @@ import android.widget.Button;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.presenters.classes.ProfilePresenter;
+import com.example.foodplanner.utils.DataSaver;
+import com.example.foodplanner.utils.InternetConnectionChangeListener;
 
 public class ProfileFragment extends Fragment {
 Button backup;
 ProfilePresenter presenter;
+InternetConnectionChangeListener internetConnectionChangeListener;
 
 
     public ProfileFragment() {
@@ -55,5 +60,19 @@ ProfilePresenter presenter;
     public void init(View view){
         backup=view.findViewById(R.id.backup);
         presenter=new ProfilePresenter(getContext());
+        internetConnectionChangeListener = new InternetConnectionChangeListener();
+    }
+    @Override
+    public void onStart() {
+        DataSaver.setView(getView());
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        requireActivity().registerReceiver(internetConnectionChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        requireActivity().unregisterReceiver(internetConnectionChangeListener);
+        super.onStop();
     }
 }

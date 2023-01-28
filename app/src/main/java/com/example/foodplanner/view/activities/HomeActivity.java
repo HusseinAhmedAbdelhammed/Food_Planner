@@ -21,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        bottomNavigationView=findViewById(R.id.bottomNav);
+        bottomNavigationView=findViewById(R.id.bottomNav1);
         NavController navController2= Navigation.findNavController(this,R.id.nav_host_fragment_home);
         NavigationUI.setupActionBarWithNavController(this,navController2);
         NavigationUI.setupWithNavController(bottomNavigationView,navController2);
