@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class SharedPrefrencesClass {
-    SharedPreferences sharedPref;
+    static SharedPreferences sharedPref;
     static boolean isFirstTime;
     static boolean isLogedIn;
     static String sharedPrefEmail;
@@ -44,5 +44,9 @@ public class SharedPrefrencesClass {
         editor.putString("sharedPrefEmail", email);
         editor.commit();
         SharedPrefrencesClass.sharedPrefEmail  = email;
+    }
+
+    public static String getSharedPrefEmail() {
+        return sharedPref.getString("sharedPrefEmail",sharedPrefEmail);
     }
 }
