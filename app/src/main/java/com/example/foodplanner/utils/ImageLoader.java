@@ -47,6 +47,11 @@ public class ImageLoader {
 
 
     }
+
+    public static void loadCountryImage(Context con,String countryName,ImageView imgView){
+            String url="https://countryflagsapi.com/png/"+countryName;
+            Picasso.with(con).load(url).into(imgView);
+    }
     public static String saveImageToRoom(ImageView imgView,Context con,String pName){
         String result="";
         File directory=con.getDir(Consts.DIRECTORY,Context.MODE_PRIVATE);

@@ -120,6 +120,7 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
     @Override
     public void showWed(List<PlanModel> wedlist) {
         if(wedlist!=null){
+
             PlanDisplayAdapter adapter5=new PlanDisplayAdapter(getContext(),wedlist);
             wedRec.setAdapter(adapter5);
         }

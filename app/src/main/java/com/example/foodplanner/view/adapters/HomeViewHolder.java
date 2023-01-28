@@ -22,6 +22,5 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
         mealName=itemView.findViewById(R.id.mealName);
         mealThum=itemView.findViewById(R.id.mealThum);
         constraintLayout=itemView.findViewById(R.id.constLay);
-
     }
 }
