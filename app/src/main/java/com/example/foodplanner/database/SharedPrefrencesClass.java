@@ -18,6 +18,7 @@ public class SharedPrefrencesClass {
         editor = sharedPref.edit();
         isFirstTime = sharedPref.getBoolean("firstTime", true);
         isLogedIn = sharedPref.getBoolean("logedIn", false);
+
     }
 
     public static boolean isIsFirstTime() {
@@ -45,4 +46,5 @@ public class SharedPrefrencesClass {
         editor.commit();
         SharedPrefrencesClass.sharedPrefEmail  = email;
     }
+
 }

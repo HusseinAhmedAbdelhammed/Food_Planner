@@ -146,7 +146,7 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
     @Override
     public void showWed(List<PlanModel> wedlist) {
         if(wedlist!=null){
-//            Toast.makeText(getContext(),wedlist.get(0).getMealName(),Toast.LENGTH_LONG).show();
+
             PlanDisplayAdapter adapter5=new PlanDisplayAdapter(getContext(),wedlist);
             wedRec.setAdapter(adapter5);
         }
