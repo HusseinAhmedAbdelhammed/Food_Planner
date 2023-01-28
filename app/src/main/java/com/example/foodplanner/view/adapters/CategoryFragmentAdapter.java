@@ -33,12 +33,6 @@ public class CategoryFragmentAdapter extends RecyclerView.Adapter<CategoryFragme
         check = true;
         Log.i(TAG, "CategoryFragmentAdapter: cat");
     }
-    public CategoryFragmentAdapter(Context con, List<MealsTable> mealList) {
-        this.mealList = mealList;
-        this.con = con;
-        check = false;
-        Log.i(TAG, "CategoryFragmentAdapter:  fav");
-    }
 
     @NonNull
     @Override
@@ -60,8 +54,6 @@ public class CategoryFragmentAdapter extends RecyclerView.Adapter<CategoryFragme
                 public void onClick(View view) {
                     MealGetter.getMealByCategory(categories.get(position).getStrCategory(),
                             view, view.getContext());
-//                    NavigatorClass.navigateBetweenFragments(view, R.id.action_homeFragment_to_catFragment2);
-
                 }
             });
 

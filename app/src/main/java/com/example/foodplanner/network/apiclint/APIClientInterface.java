@@ -21,4 +21,7 @@ public interface APIClientInterface {
     public Single<MealsList> getMealByName(@Query("s") String name);
     @GET("categories.php")
     public Single<CategoriesList> getCategories();
+    @GET("list.php")
+    public Single<MealsList> getCountryList(@Query("a") String list);
+
 }
