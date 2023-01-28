@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.view.View;
-
 public class InternetConnectionChangeListener extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
