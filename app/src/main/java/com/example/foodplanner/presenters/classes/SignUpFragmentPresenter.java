@@ -7,8 +7,10 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.foodplanner.database.SharedPrefrencesClass;
 import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.interfaces.SignUpFragmentInterface;
+import com.example.foodplanner.utils.FireStoreData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -52,6 +54,8 @@ public class SignUpFragmentPresenter {
                     task.getResult(ApiException.class);
                     authWithGoogle(res);
                     signUpFragmentInterface.sighUpSuccessWithGoogle();
+                    FireStoreData.setMail(res.getEmail());
+                    SharedPrefrencesClass.setEmailWithSaredPref(res.getEmail());
                 } catch (ApiException e) {
                     e.printStackTrace();
                 }

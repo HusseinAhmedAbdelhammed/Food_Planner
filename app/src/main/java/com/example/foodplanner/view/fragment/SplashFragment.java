@@ -3,6 +3,7 @@ package com.example.foodplanner.view.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.example.foodplanner.utils.NavigatorClass;
 public class SplashFragment extends Fragment {
     Button getStarted;
     SharedPrefrencesClass sharedPref;
+    private static final String TAG = "SplashFragment";
 
 
     @Override
@@ -41,6 +43,8 @@ public class SplashFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getStarted = view.findViewById(R.id.getStartedbtn);
         sharedPref = new SharedPrefrencesClass(getActivity());
+        Log.i(TAG, "onViewCreated: " + SharedPrefrencesClass.getSharedPrefEmail());
+        Log.i(TAG, "onViewCreated: " + SharedPrefrencesClass.isIsLogedIn());
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
