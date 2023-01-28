@@ -10,7 +10,7 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.view.activities.MealDetailsActivity;
 
 public class Alerts {
-    public static void setAlert(View view, Context context, String message){
+    public static void setAlert(Context context, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message);
         builder.setTitle("Alert !");
@@ -23,5 +23,21 @@ public class Alerts {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public static void setAlert(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Sorry you are OFFLINE you can see your favourite and plan meals only");
+        builder.setTitle("OOPS!");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Favourite", (DialogInterface.OnClickListener) (dialog, which) -> {
+            NavigatorClass.navigateBetweenFragments(DataSaver.getView(), R.id.favouriteFragment);
+        });
+        builder.setNegativeButton("Plane", (DialogInterface.OnClickListener) (dialog, which) -> {
+            NavigatorClass.navigateBetweenFragments(DataSaver.getView(), R.id.planFragment);
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }

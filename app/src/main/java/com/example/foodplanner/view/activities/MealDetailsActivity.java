@@ -69,7 +69,7 @@ public class MealDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(DataSaver.getGuest().equals(Consts.GUEST)){
                     String message = "Sorry you can only view the meal to Add it to favourite please login";
-                    Alerts.setAlert(view, MealDetailsActivity.this, message);
+                    Alerts.setAlert(MealDetailsActivity.this, message);
                 }else{
                     mealsTable = new MealsTable(passedMeal.getIdMeal(),passedMeal.getStrMeal(),
                             RecipeMaker.makeRecipe(getAllIngredientList(passedMeal)),passedMeal.getStrInstructions(),
@@ -85,7 +85,7 @@ public class MealDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(DataSaver.getGuest().equals(Consts.GUEST)){
                     String message = "Sorry you can only view the meal to Add it to plan please login";
-                    Alerts.setAlert(view, MealDetailsActivity.this, message);
+                    Alerts.setAlert(MealDetailsActivity.this, message);
                 }else{
                     NavigatorClass.navigateToPlan(MealDetailsActivity.this,passedMeal.getStrMeal(),mealThum);
                 }
