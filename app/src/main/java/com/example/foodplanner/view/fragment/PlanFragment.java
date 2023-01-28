@@ -11,12 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.pojo.PlanModel;
 import com.example.foodplanner.presenters.classes.PlanDisplayPresenter;
 import com.example.foodplanner.presenters.interfaces.PlanDisplayInterface;
+import com.example.foodplanner.utils.Consts;
+import com.example.foodplanner.utils.DataSaver;
+import com.example.foodplanner.utils.NavigatorClass;
 import com.example.foodplanner.view.adapters.PlanDisplayAdapter;
 
 import java.util.ArrayList;
@@ -26,6 +32,9 @@ import java.util.List;
 public class PlanFragment extends Fragment implements PlanDisplayInterface {
     RecyclerView satRec,sunRec,tusRec,thuRec,wedRec,friRec,monRec;
     PlanDisplayPresenter presenter;
+    LinearLayout planGuest, planUser;
+    TextView loginTV;
+    ScrollView scrollView;
 
     public PlanFragment() {
         // Required empty public constructor
@@ -50,7 +59,20 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        presenter.getDays();
+        if(DataSaver.getGuest().equals(Consts.GUEST)){
+            scrollView.setVisibility(View.GONE);
+            planGuest.setVisibility(View.VISIBLE);
+            loginTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
+                    NavigatorClass.navigateBetweenActivities(getContext(), NavigatorClass.MAIN);
+
+                }
+            });
+        }else{
+            presenter.getDays();
+        }
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.HORIZONTAL);
         LinearLayoutManager manager2=new LinearLayoutManager(getContext());
@@ -83,6 +105,10 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
         friRec=view.findViewById(R.id.friRec);
         monRec=view.findViewById(R.id.monRec);
         presenter=new PlanDisplayPresenter(this,getContext());
+        planUser = (LinearLayout) view.findViewById(R.id.planeLayout);
+        planGuest = (LinearLayout) view.findViewById(R.id.planeGuestLayout);
+        loginTV = view.findViewById(R.id.guestLoginPlan);
+        scrollView = view.findViewById(R.id.scrollable);
     }
 
     @Override

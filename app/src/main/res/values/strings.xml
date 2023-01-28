@@ -23,4 +23,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="cat">Categories</string>
     <string name="guest">"You Cann't see favourite meals as your are guest TO see them please </string>
+    <string name="planeGuest">You cann\'t see plan meals as you are guest TO see them please</string>
 </resources>

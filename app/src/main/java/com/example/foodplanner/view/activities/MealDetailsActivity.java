@@ -86,15 +86,16 @@ public class MealDetailsActivity extends AppCompatActivity {
                 if(DataSaver.getGuest().equals(Consts.GUEST)){
                     String message = "Sorry you can only view the meal to Add it to plan please login";
                     Alerts.setAlert(view, MealDetailsActivity.this, message);
-                }else{}
+                }else{
+                    NavigatorClass.navigateToPlan(MealDetailsActivity.this,passedMeal.getStrMeal(),mealThum);
+                }
             }
         });
-        addToPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigatorClass.navigateToPlan(MealDetailsActivity.this,passedMeal.getStrMeal(),mealThum);
-            }
-        });
+//        addToPlan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
     }
 
     private void declare() {

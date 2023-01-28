@@ -6,7 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.PlanFragment">
 
+
+    <LinearLayout
+        android:id="@+id/planeGuestLayout"
+        android:visibility="gone"
+        android:layout_width="408dp"
+        android:layout_height="277dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/planGuestTV"
+            android:layout_width="350dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/planeGuest"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/guestLoginPlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@color/blue"
+            android:textSize="25dp"
+             />
+    </LinearLayout>
+
     <ScrollView
+        android:id="@+id/scrollable"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,6 +56,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
+            android:id="@+id/planeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
