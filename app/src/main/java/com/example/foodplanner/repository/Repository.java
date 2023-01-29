@@ -197,7 +197,6 @@ public class Repository {
 
 
                 favouritePresenterInterface2.getAllFavMeals(mealsTables);
-                Toast.makeText(con,mealsTables.get(0).getMealName(),Toast.LENGTH_LONG).show();
 
             }
 
@@ -350,9 +349,9 @@ public class Repository {
                     DocumentSnapshot document= task.getResult();
                     Map<String,Object>map=new HashMap<>();
                     Map<String,Object>planMap=new HashMap<>();
-                    planMap= (Map<String, Object>) document.get("plan");
-                    map= (Map<String, Object>) document.getData().get("fav");//send it
 
+                    map= (Map<String, Object>) document.getData().get("fav");//send it
+                    planMap= (Map<String, Object>) document.get("plan");
                     DataGetter.getFav(con,map);
                     DataGetter.getPlan(con,planMap);
 
@@ -360,6 +359,14 @@ public class Repository {
             }
         });
 
+    }
+    public void clearRoom(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                dataBaseInstance.clearAllTables();
+            }
+        }).start();
     }
 
 }
