@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.R;
 import com.example.foodplanner.pojo.PlanModel;
 import com.example.foodplanner.utils.ImageLoader;
+import com.example.foodplanner.utils.MealGetter;
 
 import java.util.List;
 
@@ -37,6 +38,12 @@ public class PlanDisplayAdapter extends RecyclerView.Adapter<PlanDisplayViewHold
         holder.planMealName.setText(planList.get(position).getMealName());
         holder.planMealType.setText(planList.get(position).getType());
         ImageLoader.readImgFromRoom(planList.get(position).getMealThum(),holder.planThum);
+        holder.planConst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MealGetter.getMealByName(planList.get(position).getMealName(), view, context);
+            }
+        });
     }
 
     @Override
