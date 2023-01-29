@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodplanner.R;
 
 public class CountryViewHolder extends RecyclerView.ViewHolder {
-        TextView countryName;
-        ImageView countryThum;
-        ConstraintLayout constraintLayout;
-        View layout;
-        public CountryViewHolder(@NonNull View itemView) {
-            super(itemView);
-            layout=itemView;
-            countryName=itemView.findViewById(R.id.mealName);
-            countryThum=itemView.findViewById(R.id.mealThum);
-            constraintLayout=itemView.findViewById(R.id.constLay);
-        }
+    TextView countryName;
+    ImageView countryThum;
+    ConstraintLayout constraintLayout;
+    View layout;
+    public CountryViewHolder(@NonNull View itemView) {
+        super(itemView);
+        layout=itemView;
+        countryName=itemView.findViewById(R.id.ingredientName);
+        countryThum=itemView.findViewById(R.id.ingredientThum);
+        constraintLayout=itemView.findViewById(R.id.constLayoutIngredient);
+    }
 }

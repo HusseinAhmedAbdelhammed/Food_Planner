@@ -20,7 +20,7 @@
         android:backgroundTint="#FFFFFF"
         android:text="get started"
         android:textColor="@color/blue"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,14 +53,15 @@
     <TextView
         android:layout_width="213dp"
         android:layout_height="112dp"
-        android:layout_marginStart="104dp"
+        android:layout_marginStart="64dp"
+        android:gravity="center"
         android:text="   Enjoy your food"
         android:textColor="@color/white"
-        android:textSize="48sp"
+        android:textSize="36sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/getStartedbtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageview1"
-        app:layout_constraintVertical_bias="0.552"
+        app:layout_constraintVertical_bias="0.558"
         tools:ignore="NotSibling" />
 </androidx.constraintlayout.widget.ConstraintLayout>
