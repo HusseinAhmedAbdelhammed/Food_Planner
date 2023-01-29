@@ -71,7 +71,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/satRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -85,7 +85,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sunRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp" >
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -99,7 +99,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/monRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -113,7 +113,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tusRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -125,7 +125,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/wedRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp" >
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -139,7 +139,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/thuRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp" >
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -154,7 +154,7 @@
 
                 android:id="@+id/friRec"
                 android:layout_width="match_parent"
-                android:layout_height="90dp" >
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 

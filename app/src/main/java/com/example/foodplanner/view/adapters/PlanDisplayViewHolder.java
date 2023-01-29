@@ -1,6 +1,7 @@
 package com.example.foodplanner.view.adapters;
 
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import com.example.foodplanner.R;
 public class PlanDisplayViewHolder extends RecyclerView.ViewHolder {
     TextView planMealName,planMealType;
     ImageView planThum;
-    ConstraintLayout planConst;
+    FrameLayout planConst;
     View layout;
     public PlanDisplayViewHolder(@NonNull View itemView) {
         super(itemView);
