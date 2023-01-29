@@ -1,5 +1,7 @@
 package com.example.foodplanner.view.fragment;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,8 @@ import com.example.foodplanner.pojo.MealsList;
 import com.example.foodplanner.presenters.classes.HomePresenter;
 import com.example.foodplanner.presenters.classes.TestFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.HomeInterface;
+import com.example.foodplanner.utils.DataSaver;
+import com.example.foodplanner.utils.InternetConnectionChangeListener;
 import com.example.foodplanner.view.adapters.CategoryDetailsAdapter;
 import com.example.foodplanner.view.adapters.CountryAdapter;
 import com.example.foodplanner.view.adapters.HomeAdapter;
@@ -40,6 +44,7 @@ ArrayList<Meals>meals;
 CategoryFragmentAdapter catAdapter;
 TestFragmentPresenter testFragmentPresenter;
 CountryAdapter countryAdapter;
+InternetConnectionChangeListener internetConnectionChangeListener;
     private static final String TAG = "HomeFragment";
 
 
@@ -89,6 +94,7 @@ CountryAdapter countryAdapter;
         meals=new ArrayList<>();
         testFragmentPresenter=new TestFragmentPresenter(this);
         countryRecycler = view.findViewById(R.id.countryRecycler);
+        internetConnectionChangeListener = new InternetConnectionChangeListener();
     }
 
     @Override
@@ -144,4 +150,19 @@ CountryAdapter countryAdapter;
 //        //        = new ArrayList<>(Arrays.asList(""));
 //        Log.i(TAG, "showCountries: "  + countyNames.size());
 //    }
+
+    @Override
+    public void onStart() {
+        DataSaver.setView(getView());
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        requireActivity().registerReceiver(internetConnectionChangeListener, intentFilter);
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        requireActivity().unregisterReceiver(internetConnectionChangeListener);
+        super.onStop();
+    }
+
 }
