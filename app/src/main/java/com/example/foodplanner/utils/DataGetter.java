@@ -36,6 +36,7 @@ public class DataGetter {
 
     }
     public static void getPlan(Context context,Map<String,Object>data){
+        Log.i("testtest", "getPlan: " + data);
         receivedPlan=new ArrayList<>();
         for (int i=0;i<data.size();i++){
             Map<String,Object>objectMap=new HashMap<>();

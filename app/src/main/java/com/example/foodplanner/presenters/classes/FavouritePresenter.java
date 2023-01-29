@@ -35,8 +35,6 @@ public class FavouritePresenter implements FavouritePresenterInterface {
 
     @Override
     public void getAllFavMeals(List<MealsTable> mealList) {
-        Toast.makeText(con, "favPresenter", Toast.LENGTH_SHORT).show();
-//        FavouritePresenter.list = mealList;
         setList(mealList);
         favouriteInterface.showAllFavMeals(FavouritePresenter.list);
         Log.i(TAG, "getAllFavMeals: "+"*****" + FavouritePresenter.list);

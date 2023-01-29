@@ -78,10 +78,6 @@ public class Repository {
 
             @Override
             public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<PlanModel> planModelList) {
-//                if(planModelList.get(0).getDay()==null){
-//                    Toast.makeText(con,"jjjj",Toast.LENGTH_LONG).show();
-//
-//                }
                 presenterInterface.getData(planModelList);
             }
 
@@ -158,7 +154,6 @@ public class Repository {
         };
         deletePlan.subscribe(deleteObserver);
     }
-    //Single<List<MealsTable>>
 
     public void getPlansMap(FavCompresserInterface favCompresserInterface){
         Single<List<PlanModel>>getPlans=planDAO.getAllPlans()
@@ -194,8 +189,6 @@ public class Repository {
 
             @Override
             public void onSuccess(@io.reactivex.rxjava3.annotations.NonNull List<MealsTable> mealsTables) {
-
-
                 favouritePresenterInterface2.getAllFavMeals(mealsTables);
 
             }
@@ -291,7 +284,7 @@ public class Repository {
 
         fireStoredb.getDb().collection(Consts.COLLECTION)
                 .document(SharedPrefrencesClass.getSharedPrefEmail())
-                .set(data)
+                .set(data,SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -351,8 +344,9 @@ public class Repository {
                     Map<String,Object>planMap=new HashMap<>();
 
                     map= (Map<String, Object>) document.getData().get("fav");//send it
-                    planMap= (Map<String, Object>) document.get("plan");
+                    planMap= (Map<String, Object>) document.getData().get("plan");
                     DataGetter.getFav(con,map);
+                    Log.i("Rafeef", "onComplete: " + planMap);
                     DataGetter.getPlan(con,planMap);
 
                 }

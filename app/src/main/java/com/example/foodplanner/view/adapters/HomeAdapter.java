@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements Serializable{
     private final Context con;
     private ArrayList<Meals> meals;
-    Meals  passedMeal;
 
 
     public HomeAdapter(Context con, ArrayList<Meals> meals) {
@@ -44,8 +43,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> implements
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(con, meals.get(position).getStrMeal(),
-                        Toast.LENGTH_SHORT).show();
                 MealSender.sendMeal(view, con,meals.get(position) );
             }
         });

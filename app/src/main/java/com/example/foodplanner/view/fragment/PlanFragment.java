@@ -65,7 +65,6 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
             loginTV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
                     NavigatorClass.navigateBetweenActivities(getContext(), NavigatorClass.MAIN);
 
                 }
@@ -150,7 +149,6 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
             PlanDisplayAdapter adapter5=new PlanDisplayAdapter(getContext(),wedlist);
             wedRec.setAdapter(adapter5);
         }
-        Toast.makeText(getContext(),"no",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -166,7 +164,6 @@ public class PlanFragment extends Fragment implements PlanDisplayInterface {
         if(frilist!=null){
             PlanDisplayAdapter adapter7=new PlanDisplayAdapter(getContext(),frilist);
             friRec.setAdapter(adapter7);
-            Toast.makeText(getContext(),"friday yes",Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(getContext(),"no",Toast.LENGTH_LONG).show();
         }

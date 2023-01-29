@@ -29,7 +29,6 @@ public class CategoryDetailsAdapter extends RecyclerView.Adapter<CategoryDetails
 
     public CategoryDetailsAdapter(Context con, ArrayList<Meals> mealList) {
         this.mealList = mealList;
-//        Log.i(TAG, "CategoryDetailsAdapter: list "+ mealList.size());
         this.con = con;
         check = false;
         Log.i(TAG, "CategoryFragmentAdapter:  fav");

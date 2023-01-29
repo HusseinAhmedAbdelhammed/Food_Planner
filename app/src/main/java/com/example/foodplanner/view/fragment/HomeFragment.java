@@ -111,7 +111,6 @@ InternetConnectionChangeListener internetConnectionChangeListener;
     @Override
 
     public void showCats(CategoriesList categoriesList) {
-        Toast.makeText(getContext(), "cat", Toast.LENGTH_SHORT).show();
         catAdapter = new CategoryFragmentAdapter(getContext(), categoriesList.getCategories());
         catHome.setAdapter(catAdapter);
     }
@@ -128,28 +127,6 @@ InternetConnectionChangeListener internetConnectionChangeListener;
         countryAdapter = new CountryAdapter(getContext(), countries);
         countryRecycler.setAdapter(countryAdapter);
     }
-
-//    @Override
-//    public void showCountries(ArrayList<Country> countries) {
-//        Log.i(TAG, "showCountries: " + countries);
-//        countryAdapter = new CountryAdapter(getContext(), countries);
-//        countryRecycler.setAdapter(countryAdapter);
-//
-//
-//    }
-
-
-//    @Override
-//    public void showCountries(MealsList countryArrayList) {
-////        ArrayList<String> countyNames = new ArrayList<>(Arrays.asList(""));
-////        Log.i(TAG, "showCountries: "  + countryArrayList.getMeals().size());
-////        ArrayList<Meals> countryMeals = countryArrayList.getMeals();
-////        countryAdapter = new CountryAdapter(getContext(), countryMeals);
-////        Log.i(TAG, "showCountries: ");
-//      List<Country> countyNames =  HomePresenter.getCountriesWithFlags(countryArrayList);
-//        //        = new ArrayList<>(Arrays.asList(""));
-//        Log.i(TAG, "showCountries: "  + countyNames.size());
-//    }
 
     @Override
     public void onStart() {

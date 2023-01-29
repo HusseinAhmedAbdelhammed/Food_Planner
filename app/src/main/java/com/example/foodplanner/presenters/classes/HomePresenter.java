@@ -27,8 +27,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomePresenter {
     HomeInterface homeInterface;
-    static int count;
-    static ArrayList<String> countriesName;
     private static final String TAG = "HomePresenter";
    static ArrayList<Meals> countryList;
    ArrayList<Country> countries;
@@ -66,30 +64,6 @@ public class HomePresenter {
                     }
                 }).observeOn(AndroidSchedulers.mainThread());
 
-        //.toList();//DownStream operation
-//        Observer<MealsList> observer =new Observer<MealsList>() {
-//            @Override
-//            public void onSubscribe(@NonNull Disposable d) {
-//
-//            }
-//
-//            @Override
-//            public void onNext(@NonNull MealsList mealsList) {
-//
-//                homeInterface.showRandomMeals(mealsList.getMeals(),count);
-//
-//            }
-//
-//            @Override
-//            public void onError(@NonNull Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//
-//            }
-//        };
         SingleObserver<List<MealsList>> singleMealObserver = new SingleObserver<List<MealsList>>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {

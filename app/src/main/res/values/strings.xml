@@ -24,4 +24,6 @@
     <string name="cat">Categories</string>
     <string name="guest">"You Cann't see favourite meals as your are guest TO see them please </string>
     <string name="planeGuest">You cann\'t see plan meals as you are guest TO see them please</string>
+    <string name="profileGuest">You cann\'t have a profile as you are guest TO have one please</string>
+
 </resources>

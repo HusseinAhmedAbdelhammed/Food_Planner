@@ -25,7 +25,6 @@ public class CategoryDetailsPresenter {
         this.context = context;
     }
     public void getMeal(ArrayList<Meals> list){
-        Toast.makeText(context, "hi" + list.size(), Toast.LENGTH_SHORT).show();
         setList(list);
         CategoryDetailsPresenter.list = list;
 

@@ -49,10 +49,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
         holder.searConst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(con, "name " + meals.get(position).getStrMeal(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(con, "cat " +meals.get(position).getStrCategory(),Toast.LENGTH_SHORT).show();
                 MealGetter.getMealByName(meals.get(position).getStrMeal(), view, con);
-            //                MealSender.sendMeal(view, con, MealGetter.getMeal(meals.get(position).getStrMeal()));
             }
         });
     }

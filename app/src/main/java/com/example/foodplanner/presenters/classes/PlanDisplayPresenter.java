@@ -13,7 +13,6 @@ import java.util.List;
 public class PlanDisplayPresenter implements PlanDisplayPresenterInterface {
     PlanDisplayInterface planDisplayInterface;
     Context context;
-    String day="";
     ArrayList<PlanModel>sat=new ArrayList<>();
     ArrayList<PlanModel>sun=new ArrayList<>();
     ArrayList<PlanModel>mon=new ArrayList<>();

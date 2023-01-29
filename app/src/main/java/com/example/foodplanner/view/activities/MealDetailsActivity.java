@@ -91,11 +91,6 @@ public class MealDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-//        addToPlan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
     }
 
     private void declare() {
