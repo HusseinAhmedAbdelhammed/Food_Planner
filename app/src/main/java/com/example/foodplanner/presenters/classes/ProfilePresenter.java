@@ -2,6 +2,8 @@ package com.example.foodplanner.presenters.classes;
 
 import android.content.Context;
 
+import com.example.foodplanner.database.SharedPrefrencesClass;
+import com.example.foodplanner.repository.Repository;
 import com.example.foodplanner.utils.FavCompresser;
 
 public class ProfilePresenter {
@@ -14,6 +16,11 @@ public class ProfilePresenter {
         compresser=new FavCompresser(context);
         compresser.favBackup();
         compresser.planBackup();
-        compresser.dataTest();
+
+    }
+    public void clearData(){
+        Repository.getInstance(context).clearRoom();
+        SharedPrefrencesClass.setIsLogedIn(false);
+
     }
 }

@@ -17,11 +17,13 @@ import com.example.foodplanner.R;
 import com.example.foodplanner.presenters.classes.ProfilePresenter;
 import com.example.foodplanner.utils.DataSaver;
 import com.example.foodplanner.utils.InternetConnectionChangeListener;
+import com.example.foodplanner.utils.NavigatorClass;
 
 public class ProfileFragment extends Fragment {
 Button backup;
 ProfilePresenter presenter;
 InternetConnectionChangeListener internetConnectionChangeListener;
+Button logout;
 
 
     public ProfileFragment() {
@@ -57,10 +59,18 @@ InternetConnectionChangeListener internetConnectionChangeListener;
 
             }
         });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.clearData();
+                NavigatorClass.navigateBetweenActivities(getContext(),NavigatorClass.MAIN);
+            }
+        });
     }
     public void init(View view){
         backup=view.findViewById(R.id.backup);
         presenter=new ProfilePresenter(getContext());
+        logout=view.findViewById(R.id.logout);
         internetConnectionChangeListener = new InternetConnectionChangeListener();
     }
     @Override
