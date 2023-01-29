@@ -151,10 +151,11 @@
                     android:id="@+id/addToFavMealDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="14dp"
                     android:layout_weight="1"
                     android:layout_marginRight="5dp"
-                    android:text="Add to favourite" />
+                    android:text="Add to favourite"
+                    android:textSize="10dp"/>
 
                 <Button
                     android:id="@+id/addToPlanMealDetails"

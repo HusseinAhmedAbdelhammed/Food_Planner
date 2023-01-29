@@ -21,12 +21,12 @@
         android:id="@+id/textView2"
         android:layout_width="317dp"
         android:layout_height="83dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="350dp"
+        android:gravity="center"
         android:text="@string/splach1"
         android:textColor="#EDEAEA"
         android:textSize="24sp"
-        android:gravity="center"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="400dp"
         android:textStyle="bold|italic" />
 
     <Button

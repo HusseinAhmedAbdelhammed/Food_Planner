@@ -20,6 +20,7 @@ import com.example.foodplanner.network.firebase.FireBase;
 import com.example.foodplanner.presenters.classes.LogInFragmentPresenter;
 import com.example.foodplanner.presenters.interfaces.LogInFragmentInterface;
 import com.example.foodplanner.repository.Repository;
+import com.example.foodplanner.utils.DataSaver;
 import com.example.foodplanner.utils.NavigatorClass;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
@@ -85,6 +86,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
         Toast.makeText(getContext(), "login Successfully",
                 Toast.LENGTH_SHORT).show();
         Repository.getInstance(getContext()).getDataFromFireStore();
+        DataSaver.setGuest("");
         NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
 
     }
@@ -99,6 +101,7 @@ public class LoginFragment extends Fragment implements LogInFragmentInterface {
     public void loginSuccessWithGoogle(){
         SharedPrefrencesClass.setIsLogedIn(true);
         Repository.getInstance(getContext()).getDataFromFireStore();
+        DataSaver.setGuest("");
         NavigatorClass.navigateBetweenActivities(getActivity(),NavigatorClass.HOME);
     }
 
